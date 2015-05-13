@@ -6,15 +6,18 @@ else
   end.first
 end
 
+default[:singularity][:port] = 7099
+
 default[:singularity] = {
   :user                     => 'singularity',
   :group                    => 'singularity',
-  :git_ref                  => 'Singularity-0.4.1',
+  :git_ref                  => 'e2405eb5ca1a1ba006a89a27bdb3299433ae96d5',
   :version                  => '0.4.1',
   :data_dir                 => '/var/lib/singularity',
   :log_dir                  => '/var/log/singularity',
   :conf_dir                 => '/etc/singularity',
-  :base_url                 => "http://#{node[:fqdn]}:7099/singularity",
+  :base_url                 =>
+    "http://#{node[:fqdn]}:#{node[:singularity][:port]}/singularity",
   :app_mysql_defaults       => { 'adapter' => 'mysql2',
                                  'pool' => 20,
                                  'timeout' => 5000 },
@@ -24,17 +27,38 @@ default[:singularity] = {
 }
 
 default['singularity']['install_type'] = 'package'
-
 default[:singularity][:home] = '/usr/local/singularity'
 default[:singularity][:log_level] = 'INFO'
+default[:singularity][:mesos_framework_name] = 'Singularity'
+default[:singularity][:zk_namespace] = 'singularity'
 
-set[:mesos][:type] = 'mesosphere'
-set[:mesos][:mesosphere][:with_zookeeper] = true
+default[:singularity][:s3uploader][:metadata_dir] = '.'
+default[:singularity][:logwatcher][:metadata_dir] = '.'
 
-default[:mesos][:master][:zk] = 'zk://localhost:2181/mesos'
-default[:mesos][:slave][:master] = 'zk://localhost:2181/mesos'
+default[:mesos] = {
+  :package_version => "0.21.0-1.0.ubuntu1404",
+  :common => {
+    :ip => private_ip,
+  },
+  :master => {
+    :cluster => 'vagrant-singularity',
+  },
+  :slave => {
+    :containerizers => 'docker,mesos',
+    :switch_user => 'false'
+  },
+  :slave_resources => {},
+  :slave_attributes => {}
+}
 
-default[:docker][:enabled] = true
+default[:mesos][:apt_key] = 'E56151BF'
+default[:mesos][:apt_key_server] = 'keyserver.ubuntu.com'
+default[:mesos][:prefix] = '/usr/local'
+
+default[:docker] = {
+  :enabled => true,
+  :package_version => "1.0.1~dfsg1-0ubuntu1~ubuntu0.14.04.1",
+}
 
 default[:mysql] = {
   :port => '3306',
@@ -43,6 +67,10 @@ default[:mysql] = {
 }
 
 default['baragon']['service_yaml']['server']['connector']['port'] = 8088
+default[:singularity][:baragon_url] =
+  'http://localhost:' \
+  "#{node['baragon']['service_yaml']['server']['connector']['port']}" \
+  '/baragon/v2'
 
 override['java']['install_flavor'] = "oracle"
 override['java']['jdk_version'] = "7"

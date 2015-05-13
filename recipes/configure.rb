@@ -3,10 +3,6 @@ template "#{node[:singularity][:conf_dir]}/singularity.yaml" do
   owner  'root'
   group  'root'
   mode   0644
-  variables(baragon_url:
-    'http://localhost:' \
-    "#{node['baragon']['service_yaml']['server']['connector']['port']}" \
-    '/baragon/v2')
 end
 
 execute 'migrate_singularity_db' do
