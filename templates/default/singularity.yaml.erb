@@ -4,7 +4,7 @@ server:
   applicationContextPath: /
   connector:
     type: http
-    port: 7099
+    port: <%= node[:singularity][:port] %>
   requestLog:
     appenders:
       - type: file
@@ -21,13 +21,13 @@ mesos:
   master: <%= node[:mesos][:master][:zk] %>
   defaultCpus: 1
   defaultMemory: 128
-  frameworkName: Singularity
-  frameworkId: Singularity
+  frameworkName: <%= node[:singularity][:mesos_framework_name] %>
+  frameworkId: <%= node[:singularity][:mesos_framework_name] %>
   frameworkFailoverTimeout: 1000000
 
 zookeeper:
   quorum: <%= node[:singularity][:zk_hosts].join(',') %>
-  zkNamespace: singularity
+  zkNamespace: <%= node[:singularity][:zk_namespace] %>
   sessionTimeoutMillis: 60000
   connectTimeoutMillis: 5000
   retryBaseSleepTimeMilliseconds: 1000
@@ -35,13 +35,13 @@ zookeeper:
 
 logging:
   loggers:
-    "com.hubspot.singularity" : DEBUG
+    "com.hubspot.singularity" : <%= node[:singularity][:log_level] %>
 
 ui:
   title: Singularity (<%= node.chef_environment %>)
   baseUrl: <%= node[:singularity][:base_url] %>
 
-loadBalancerUri: <%= @baragon_url.gsub(/\/$/, '') %>/request
+loadBalancerUri: <%= node[:singularity][:baragon_url].gsub(/\/$/, '') %>/request
 
 customExecutor:
   memoryMb: 128
