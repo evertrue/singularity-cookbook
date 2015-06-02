@@ -37,9 +37,9 @@ file '/etc/mysql-default/root_password' do
 end
 
 mysql_connection_info = {
-  :host     => '127.0.0.1',
-  :username => 'root',
-  :password => server_root_password
+  host:     '127.0.0.1',
+  username: 'root',
+  password: server_root_password
 }
 
 mysql_database node[:singularity][:database][:db_name] do

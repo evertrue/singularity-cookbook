@@ -1,5 +1,5 @@
-include_recipe "java"
+include_recipe 'java'
 
-apt_package "maven" do
+apt_package 'maven' do
   action :install
 end
