@@ -1,11 +1,3 @@
-if node[:network][:interfaces][:eth1]
-  private_ip = node[:network][:interfaces][:eth1][:addresses].detect { |_k, v| v[:family] == 'inet' }.first
-else
-  private_ip = node[:network][:interfaces][:eth0][:addresses].find do |_k, v|
-    v[:family] == 'inet'
-  end.first
-end
-
 default[:singularity] = {
   user:               'singularity',
   group:              'singularity',
