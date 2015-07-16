@@ -16,6 +16,7 @@ default[:singularity] = {
 }
 
 default['singularity']['install_type'] = 'package'
+default['singularity']['port'] = 7092
 
 default[:singularity][:home] = '/usr/local/singularity'
 default[:singularity][:log_level] = 'INFO'
