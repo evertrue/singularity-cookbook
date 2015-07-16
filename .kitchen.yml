@@ -20,6 +20,7 @@ platforms:
 suites:
   - name: default
     run_list:
+      - recipe[apt::default]
       - recipe[singularity::default]
       - recipe[zookeeper::default]
       - recipe[zookeeper::service]
