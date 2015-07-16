@@ -33,6 +33,7 @@ template '/etc/init/singularity.conf' do
   owner  'root'
   group  'root'
   mode   0644
+  notifies :restart, 'service[singularity]'
 end
 
 service 'singularity' do
