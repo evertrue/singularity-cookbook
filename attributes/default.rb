@@ -2,7 +2,7 @@ default[:singularity] = {
   user:               'singularity',
   group:              'singularity',
   git_ref:            'Singularity-0.4.1',
-  version:            '0.4.1',
+  version:            '0.4.2',
   data_dir:           '/var/lib/singularity',
   log_dir:            '/var/log/singularity',
   conf_dir:           '/etc/singularity',
