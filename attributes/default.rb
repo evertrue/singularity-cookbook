@@ -27,8 +27,6 @@ set[:mesos][:mesosphere][:with_zookeeper] = true
 default[:mesos][:master][:zk] = 'zk://localhost:2181/mesos'
 default[:mesos][:slave][:master] = 'zk://localhost:2181/mesos'
 
-default[:docker][:enabled] = true
-
 default[:mysql] = {
   port:         '3306',
   bind_address: '0.0.0.0',

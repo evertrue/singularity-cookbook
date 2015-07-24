@@ -24,5 +24,4 @@ else
 end
 
 include_recipe 'singularity::configure'
-include_recipe 'docker' if node[:docker][:enabled]
 include_recipe 'singularity::logrotate'
