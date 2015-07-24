@@ -29,17 +29,17 @@ cookbook_file "#{node[:singularity][:home]}/mysql/migrations.sql" do
 end
 
 template '/etc/init/singularity.conf' do
-  source 'singularity-init.erb'
-  owner  'root'
-  group  'root'
-  mode   0644
+  source   'singularity-init.erb'
+  owner    'root'
+  group    'root'
+  mode     0644
   notifies :restart, 'service[singularity]'
 end
 
 service 'singularity' do
-  provider Chef::Provider::Service::Upstart
-  supports status: true, restart: true
-  action   [:enable, :start]
+  provider   Chef::Provider::Service::Upstart
+  supports   status: true, restart: true
+  action     [:enable, :start]
   subscribes :restart,
              "remote_file[#{node[:singularity][:home]}/bin/singularity.jar]"
 end
