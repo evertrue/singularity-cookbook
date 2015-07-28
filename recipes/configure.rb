@@ -5,7 +5,7 @@ template "#{node[:singularity][:conf_dir]}/singularity.yaml" do
   mode   0644
   variables(baragon_url:
     'http://localhost:' \
-    "#{node['baragon']['service_yaml']['server']['connector']['port']}" \
+    "#{node[:baragon][:service_yaml][:server][:connector][:port]}" \
     '/baragon/v2')
 end
 

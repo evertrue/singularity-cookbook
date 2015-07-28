@@ -15,7 +15,7 @@ database:
   driverClass: com.mysql.jdbc.Driver
   user: <%= node[:singularity][:database][:username] %>
   password: <%= node[:singularity][:database][:password] %>
-  url: jdbc:mysql://localhost:3306/<%= node[:singularity][:database][:db_name] %>
+  url: jdbc:mysql://<%= node[:singularity][:database][:host] %>:<%= node[:singularity][:database][:port] %>/<%= node[:singularity][:database][:db_name] %>
 
 mesos:
   master: <%= node[:mesos][:master][:zk] %>
