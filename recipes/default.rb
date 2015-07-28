@@ -12,15 +12,19 @@ include_recipe 'singularity::java'
  node[:singularity][:log_dir],
  node[:singularity][:home],
  "#{node[:singularity][:home]}/mysql",
- "#{node[:singularity][:home]}/bin"].each { |cur_dir| directory cur_dir }
+ "#{node[:singularity][:home]}/bin"].each do |cur_dir|
+   directory cur_dir do
+     recursive true
+   end
+ end
 
-case node['singularity']['install_type']
+case node[:singularity][:install_type]
 when 'package'
   include_recipe 'singularity::package'
 when 'source'
   include_recipe 'singularity::source'
 else
-  fail "Invalid install type: #{node['singularity']['install_type']}"
+  fail "Invalid install type: #{node[:singularity][:install_type]}"
 end
 
 include_recipe 'singularity::configure'
