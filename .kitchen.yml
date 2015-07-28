@@ -15,6 +15,8 @@ platforms:
       network:
         - - private_network
           - ip: '192.168.33.10'
+        - ["forwarded_port", {guest: 7099, host: 8099}]
+        - ["forwarded_port", {guest: 5050, host: 8050}]
 
 suites:
   - name: default
@@ -24,6 +26,7 @@ suites:
       - recipe[zookeeper::service]
     attributes:
       singularity:
+        port: 7099
         zk_hosts:
         - 'localhost:2181'
       mesos:
