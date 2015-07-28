@@ -40,6 +40,4 @@ service 'singularity' do
   provider   Chef::Provider::Service::Upstart
   supports   status: true, restart: true
   action     [:enable, :start]
-  subscribes :restart,
-             "remote_file[#{node[:singularity][:home]}/bin/singularity.jar]"
 end
