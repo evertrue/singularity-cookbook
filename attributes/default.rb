@@ -25,7 +25,7 @@ default[:singularity][:install_type] = 'package'
 default[:singularity][:log_level] = 'INFO'
 
 set[:mesos][:type] = 'mesosphere'
-set[:mesos][:mesosphere]['with_zookeeper'] = true
+set[:mesos][:mesosphere][:with_zookeeper] = true
 
 default[:mesos][:master][:zk] = 'zk://localhost:2181/mesos'
 default[:mesos][:slave][:master] = 'zk://localhost:2181/mesos'
