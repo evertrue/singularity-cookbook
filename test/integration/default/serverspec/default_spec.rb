@@ -22,8 +22,22 @@ describe 'Services' do
   describe port(2181) do
     it { should be_listening.with('tcp6') }
   end
-  describe file('/etc/mesos-slave/attributes/rackid') do
-    it { is_expected.to be_file }
-    it { is_expected.to contain(/^us-east-1b$/) }
+
+  describe service 'singularity' do
+    it { should be_enabled }
+    it { should be_running }
+  end
+
+  describe service 'mesos-master' do
+    it { should be_enabled }
+    it { should be_running }
+  end
+
+  describe service 'mesos-slave' do
+    it { should_not be_running }
+  end
+
+  describe file '/usr/local/lib/libmesos.so' do
+    it { should be_file }
   end
 end
