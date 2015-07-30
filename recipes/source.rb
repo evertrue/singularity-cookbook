@@ -25,6 +25,13 @@ directory "#{Chef::Config[:file_cache_path]}/Singularity" do
   owner node[:singularity][:user]
 end
 
+directory "#{node[:singularity][:home]}/bin" do
+  owner     node[:singularity][:user]
+  group     node[:singularity][:user]
+  mode      0755
+  recursive true
+end
+
 git "#{Chef::Config[:file_cache_path]}/Singularity" do
   repository 'https://github.com/HubSpot/Singularity.git'
   reference  node[:singularity][:git_ref]
