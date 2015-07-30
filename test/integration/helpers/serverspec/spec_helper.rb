@@ -2,3 +2,5 @@
 require 'serverspec'
 
 set :backend, :exec
+
+require 'executor'

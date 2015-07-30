@@ -47,6 +47,10 @@ suites:
   - name: executor_package
     run_list:
       - recipe[singularity::executor]
+    attributes:
+      singularity:
+        executor:
+          s3_bucket: example
 
   - name: executor_source
     run_list:
@@ -54,3 +58,5 @@ suites:
     attributes:
       singularity:
         install_type: source
+        executor:
+          s3_bucket: example
