@@ -43,3 +43,14 @@ suites:
             rackid: us-east-1b
       zookeeper:
         service_style: upstart
+
+  - name: executor_package
+    run_list:
+      - recipe[singularity::executor]
+
+  - name: executor_source
+    run_list:
+      - recipe[singularity::executor]
+    attributes:
+      singularity:
+        install_type: source

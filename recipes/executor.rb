@@ -17,17 +17,45 @@
 # limitations under the License.
 #
 
-include_recipe 'singularity::build'
+include_recipe 'singularity::user'
 
-["#{node[:singularity][:home]}/bin",
- "#{node[:singularity][:data_dir]}/executor-tasks"].each do |dir|
-  directory dir do
-    owner     node[:singularity][:user]
-    group     node[:singularity][:user]
-    mode      0755
-    recursive true
-    action    :create
+case node[:singularity][:install_type]
+when 'package'
+  include_recipe 'maven'
+
+  maven 'SingularityExecutor' do
+    group_id   'com.hubspot'
+    classifier 'shaded'
+    version    node[:singularity][:version]
+    dest       "#{node[:singularity][:home]}/bin"
+    mode       0755
+    owner      node[:singularity][:user]
   end
+
+  link "#{node[:singularity][:home]}/bin/SingularityExecutor" do
+    to "#{node[:singularity][:home]}/bin/SingularityExecutor-0.4.2-shaded.jar"
+  end
+when 'source'
+  include_recipe 'singularity::source'
+
+  ["#{node[:singularity][:home]}/bin",
+   "#{node[:singularity][:data_dir]}/executor-tasks"].each do |dir|
+    directory dir do
+      owner     node[:singularity][:user]
+      group     node[:singularity][:user]
+      mode      0755
+      recursive true
+      action    :create
+    end
+  end
+
+  remote_file "#{node[:singularity][:home]}/bin/SingularityExecutor" do
+    mode     0755
+    source   "file://#{Chef::Config[:file_cache_path]}/Singularity/" \
+             'SingularityExecutor/target/SingularityExecutor'
+  end
+else
+  fail "Invalid install type: #{node[:singularity][:install_type]}"
 end
 
 %w(executor
@@ -40,10 +68,4 @@ end
     mode   0644
     variables(creds: data_bag_item('secrets', 'aws_credentials')['Singularity'])
   end
-end
-
-remote_file "#{node[:singularity][:home]}/bin/SingularityExecutor" do
-  mode     0755
-  source   "file://#{Chef::Config[:file_cache_path]}/Singularity/" \
-           'SingularityExecutor/target/SingularityExecutor'
 end
