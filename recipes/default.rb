@@ -38,10 +38,8 @@ include_recipe 'singularity::java'
  end
 
 case node[:singularity][:install_type]
-when 'package'
-  include_recipe 'singularity::package'
-when 'source'
-  include_recipe 'singularity::source'
+when 'package', 'source'
+  include_recipe "singularity::#{node[:singularity][:install_type]}"
 else
   fail "Invalid install type: #{node[:singularity][:install_type]}"
 end
