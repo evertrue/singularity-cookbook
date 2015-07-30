@@ -24,5 +24,4 @@ maven 'SingularityService' do
   classifier 'shaded'
   version    node[:singularity][:version]
   dest       "#{node[:singularity][:home]}/bin/"
-  notifies   :restart, 'service[singularity]'
 end

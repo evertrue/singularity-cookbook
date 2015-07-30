@@ -52,5 +52,4 @@ remote_file "#{node[:singularity][:home]}/bin/" \
          'SingularityService/target/' \
          "SingularityService-#{node[:singularity][:version]}-SNAPSHOT-" \
          'shaded.jar'
-  notifies :restart, "service[singularity]"
 end
