@@ -17,11 +17,7 @@
 # limitations under the License.
 #
 
-user node[:singularity][:user] do
-  supports(manage_home: true)
-  home node[:singularity][:home]
-end
-
+include_recipe 'singularity::user'
 include_recipe 'mesos'
 include_recipe 'mesos::master'
 include_recipe 'singularity::mysql'
