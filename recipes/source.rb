@@ -45,7 +45,7 @@ execute 'build_singularity' do
   # being run as root.
   user    node[:singularity][:user]
   environment('HOME' => node[:singularity][:home])
-  command "#{node['maven']['m2_home']}/bin/mvn clean package -DskipTests"
+  command "#{node[:maven][:m2_home]}/bin/mvn clean package -DskipTests"
   creates "#{Chef::Config[:file_cache_path]}/Singularity/" \
           'SingularityService/target/' \
           "SingularityService-#{node[:singularity][:version]}-shaded.jar"

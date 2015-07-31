@@ -8,7 +8,7 @@ default[:singularity][:data_dir] = '/var/lib/singularity'
 default[:singularity][:log_dir] = '/var/log/singularity'
 default[:singularity][:conf_dir] = '/etc/singularity'
 default[:singularity][:base_url] =
-  "http://#{node['fqdn']}:#{node['singularity']['port']}/singularity"
+  "http://#{node[:fqdn]}:#{node[:singularity][:port]}/singularity"
 
 default[:singularity][:app_mysql_defaults][:adapter] = 'mysql2'
 default[:singularity][:app_mysql_defaults][:pool] = 20
