@@ -14,4 +14,3 @@ bin/*
 .kitchen/
 .kitchen.local.yml
 .kitchen.list.yml
-Gemfile.lock
