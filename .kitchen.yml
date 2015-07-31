@@ -19,6 +19,7 @@ platforms:
       image_id: ami-fff32894
       tags:
         Env: public
+        Type: test
 
 suites:
   - name: default
