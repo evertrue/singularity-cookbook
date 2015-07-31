@@ -10,7 +10,8 @@ before_install:
 - echo 'node_name "trubot"' >> ~/.chef/knife.rb
 - chmod 600 ~/.ssh/travis_ci_ec2.pem
 script:
-- bundle exec rake
+- bundle exec rake style
+- bundle exec kitchen test -c -d always
 after_script:
 - bundle exec rake integration:cloud_destroy
 notifications:
