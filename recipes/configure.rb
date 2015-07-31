@@ -28,8 +28,7 @@ end
 template "#{node[:singularity][:conf_dir]}/singularity.yaml" do
   source 'singularity.yaml.erb'
   variables(baragon_url:
-    'http://localhost:' \
-    "#{node[:baragon][:service_yaml][:server][:connector][:port]}" \
+    "http://localhost:#{node[:baragon][:service_yaml][:server][:connector][:port]}" \
     '/baragon/v2')
 end
 
