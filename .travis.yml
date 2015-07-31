@@ -11,9 +11,9 @@ before_install:
 - chmod 600 ~/.ssh/travis_ci_ec2.pem
 script:
 - bundle exec rake style
-- bundle exec kitchen test -c -d always
-after_script:
-- bundle exec rake integration:cloud_destroy
+# - bundle exec kitchen test -c -d always
+# after_script:
+# - bundle exec rake integration:cloud_destroy
 notifications:
   slack:
     secure: dLmroNHSMcoGd6S6FvyW8QfodL9MKEfsmPVe9oru0tCJiZuiDjAmrNYlZDPWfS9274uK2wElAr7qypVcL5PVjMOYnlBOnV4C0pvM5zkzbNi3qBAjokqeS2ukKFFUt3L12+g4Mg6S/gKuDSxhQh7wzCa8pVKOjYXHaKcWi5YcfaJpfRmN8xxDDOz8dgikBknyRhnkj/I3hR+Lse5zaDaFsBHtWWyqDnd81UGdpsYrZne+t/Py4PiGXyWvMz98PA/jyac5DxbmzBBbPkz1JS+mXQblgcP6f7MtzOf5jwRsiXCZs6vzJXC4Hzomp4msdnJY/5i65yoaowOdhHclUehryuEgLT5cZMksScjNUdwPCILLP6EZHJieN5QDRc9uYd1UyckpUj1Pu8SFyO/cKBNZB9VMaUu92jdcm1zp2gZLooZNjzSH1oL5IUM0nfMyQxe2CqAP79M/Doc07lKE90LjbYt/wrOUZjNVCgOq7Fm8aiHJTJ4sHSeYYmfCj/SvzpUJ6maJqW+LzkdaSeK3UfkLeXN6lbhVe8vfSXKzLau3gZYj8xa1ppO1AJ2ooD8JwAQbDEErQgJmIXpF13mRxJAsKSO1g3E+8LnJagAvOp2anjAxySa0ejv39MgIWcT1JtjIe6MTrSECRvVCqVvKr2xXCzLNJlz1Ff/jDFP7raJsI5Q=
