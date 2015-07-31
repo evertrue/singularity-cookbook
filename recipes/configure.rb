@@ -17,14 +17,6 @@
 # limitations under the License.
 #
 
-remote_file "#{node[:singularity][:home]}/bin/" \
-            "SingularityService-#{node[:singularity][:version]}-shaded.jar" do
-  mode   0644
-  source "file://#{Chef::Config[:file_cache_path]}/Singularity/" \
-         'SingularityService/target/' \
-         "SingularityService-#{node[:singularity][:version]}-shaded.jar"
-end
-
 template "#{node[:singularity][:conf_dir]}/singularity.yaml" do
   source 'singularity.yaml.erb'
   variables(baragon_url:
