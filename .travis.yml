@@ -9,6 +9,7 @@ before_install:
 - mkdir ~/.chef
 - echo 'node_name "trubot"' >> ~/.chef/knife.rb
 - chmod 600 ~/.ssh/travis_ci_ec2.pem
+- export KITCHEN_YAML=.kitchen.cloud.yml
 script:
 - bundle exec rake style
 # - bundle exec kitchen test -c -d always

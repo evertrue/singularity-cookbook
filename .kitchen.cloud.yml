@@ -1,6 +1,14 @@
 ---
 driver:
-  name: vagrant
+  name: ec2
+  aws_ssh_key_id: <%= ENV['AWS_KEYPAIR_NAME'] %>
+  region: us-east-1
+  availability_zone: us-east-1b
+  security_group_ids: ['ci-testing']
+  instance_type: c3.large
+  interface: public
+  transport:
+    ssh_key: <%= ENV['EC2_SSH_KEY_PATH'] %>
 
 provisioner:
   name: chef_zero
@@ -8,18 +16,10 @@ provisioner:
 platforms:
   - name: ubuntu-14.04
     driver_config:
-      customize:
-        cpus: 4
-        memory: 1536
-      network:
-        - - private_network
-          - ip: '192.168.33.10'
-        - - forwarded_port
-          - guest: 7099
-            host: 8099
-        - - forwarded_port
-          - guest: 5050
-            host: 8050
+      image_id: ami-fff32894
+      tags:
+        Env: public
+        Type: test
 
 suites:
   - name: default
@@ -27,6 +27,9 @@ suites:
       - recipe[singularity::default]
       - recipe[zookeeper::default]
       - recipe[zookeeper::service]
+    driver_config:
+      tags:
+        Name: singularity-default-ubuntu-1404
     attributes:
       singularity:
         port: 7099
@@ -46,6 +49,9 @@ suites:
   - name: executor_package
     run_list:
       - recipe[singularity::executor]
+    driver_config:
+      tags:
+        Name: singularity-executor_package-ubuntu-1404
     attributes:
       singularity:
         executor:
@@ -54,6 +60,9 @@ suites:
   - name: executor_source
     run_list:
       - recipe[singularity::executor]
+    driver_config:
+      tags:
+        Name: singularity-executor_source-ubuntu-1404
     attributes:
       singularity:
         install_type: source
