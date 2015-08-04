@@ -9,18 +9,17 @@ describe 'Filesystem' do
 end
 
 describe 'Services' do
-  # 2181 - Zookeeper
-  # 3306 - MySQL
-  # 5050 - Mesos Master
-  # 5051 - Mesos Slave
-  # 7099 - Singularity
-  [3306, 5050, 7099].each do |p|
-    describe port(p) do
-      it { should be_listening.with('tcp') }
+  {
+    2181 => 'Zookeeper',
+    3306 => 'MySQL',
+    5050 => 'Mesos Master',
+    7099 => 'Singularity'
+  }.each do |p, service|
+    context service do
+      describe port p do
+        it { is_expected.to be_listening }
+      end
     end
-  end
-  describe port(2181) do
-    it { should be_listening.with('tcp6') }
   end
 
   describe service 'singularity' do
