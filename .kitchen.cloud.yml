@@ -16,7 +16,7 @@ provisioner:
 platforms:
   - name: ubuntu-14.04
     driver_config:
-      image_id: ami-fff32894
+      image_id: ami-1bf75170
       tags:
         Env: public
         Type: test
