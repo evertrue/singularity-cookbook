@@ -18,7 +18,7 @@ database:
   url: jdbc:mysql://<%= node[:singularity][:database][:host] %>:<%= node[:singularity][:database][:port] %>/<%= node[:singularity][:database][:db_name] %>
 
 mesos:
-  master: <%= node[:mesos][:master][:zk] %>
+  master: <%= node[:et_mesos][:master][:zk] %>
   defaultCpus: 1
   defaultMemory: 128
   frameworkName: Singularity

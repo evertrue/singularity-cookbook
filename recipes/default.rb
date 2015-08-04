@@ -18,7 +18,7 @@
 #
 
 include_recipe 'singularity::user'
-include_recipe 'mesos::master'
+include_recipe 'et_mesos::master'
 include_recipe 'singularity::mysql'
 include_recipe 'singularity::java'
 

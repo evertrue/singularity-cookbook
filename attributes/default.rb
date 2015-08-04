@@ -24,11 +24,11 @@ default[:singularity][:install_type] = 'package'
 
 default[:singularity][:log_level] = 'INFO'
 
-set[:mesos][:type] = 'mesosphere'
-set[:mesos][:mesosphere][:with_zookeeper] = true
+set[:et_mesos][:type] = 'mesosphere'
+set[:et_mesos][:mesosphere][:with_zookeeper] = true
 
-default[:mesos][:master][:zk] = 'zk://localhost:2181/mesos'
-default[:mesos][:slave][:master] = 'zk://localhost:2181/mesos'
+default[:et_mesos][:master][:zk] = 'zk://localhost:2181/mesos'
+default[:et_mesos][:slave][:master] = 'zk://localhost:2181/mesos'
 
 default[:mysql][:port] = '3306'
 default[:mysql][:bind_address] = '0.0.0.0'
