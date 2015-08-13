@@ -13,69 +13,18 @@ It will install and configure Singularity, MySQL and a Mesos Master on the node
 You can also find comments in [attributes/default.rb](https://github.com/evertrue/singularity-cookbook/blob/master/attributes/default.rb)
 
 ## General Attributes
+| Key                       | Type    | Description                   | Default                |
+|---------------------------|---------|-------------------------------|------------------------|
+| [:singularity][:port]     | Integer | The singularity port          | 7092                   |
+| [:singularity][:user]     | String  | User for singularity          | singularity            |
+| [:singularity][:group]    | String  | Group for singularity         | singularity            |
+| [:singularity][:git_ref]  | String  | Git ref to install from       | Singularity-0.4.2      |
+| [:singularity][:version]  | String  | Version number of singularity | 0.4.2                  |
+| [:singularity][:home]     | String  | Home directory                | /usr/local/singularity |
+| [:singularity][:data_dir] | String  | Data directory                | /var/lib/singularity   |
+| [:singularity][:log_dir]  | String  | Log directory                 | /var/log/singularityy  |
+| [:singularity][:conf_dir] | String  | Config directory              | /etc/singularity       |
 
-<table>
-  <tr>
-    <th>Key</th>
-    <th>Type</th>
-    <th>Description</th>
-    <th>Default</th>
-  </tr>
-  <tr>
-    <td><tt>[:singularity][:port]</tt></td>
-    <td>Integer</td>
-    <td>The singularity port</td>
-    <td><tt>7092</tt></td>
-  </tr>
-  <tr>
-    <td><tt>[:singularity][:user]</tt></td>
-    <td>String</td>
-    <td>User for singularity</td>
-    <td><tt>singularity</tt></td>
-  </tr>
-  <tr>
-    <td><tt>[:singularity][:group]</tt></td>
-    <td>String</td>
-    <td>Group for singularity</td>
-    <td><tt>singularity</tt></td>
-  </tr>
-  <tr>
-    <td><tt>[:singularity][:git_ref]</tt></td>
-    <td>String</td>
-    <td>Git ref to install from</td>
-    <td><tt>Singularity-0.4.2</tt></td>
-  </tr>
-  <tr>
-    <td><tt>[:singularity][:version]</tt></td>
-    <td>String</td>
-    <td>Version number of singularity</td>
-    <td><tt>0.4.2</tt></td>
-  </tr>
-  <tr>
-    <td><tt>[:singularity][:home]</tt></td>
-    <td>String</td>
-    <td>Home directory</td>
-    <td><tt>/usr/local/singularity</tt></td>
-  </tr>
-  <tr>
-    <td><tt>[:singularity][:data_dir]</tt></td>
-    <td>String</td>
-    <td>Data directory</td>
-    <td><tt>/var/lib/singularity</tt></td>
-  </tr>
-  <tr>
-    <td><tt>[:singularity][:log_dir]</tt></td>
-    <td>String</td>
-    <td>Log directory</td>
-    <td><tt>/var/log/singularityy</tt></td>
-  </tr>
-  <tr>
-    <td><tt>[:singularity][:conf_dir]</tt></td>
-    <td>String</td>
-    <td>Config directory</td>
-    <td><tt>/etc/singularity</tt></td>
-  </tr>
-</table>
 
 ## Contributing
 
