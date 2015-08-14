@@ -13,6 +13,7 @@ It will install and configure Singularity, MySQL and a Mesos Master on the node
 You can also find comments in [attributes/default.rb](https://github.com/evertrue/singularity-cookbook/blob/master/attributes/default.rb)
 
 ## General Attributes
+
 | Key                       | Type    | Description                   | Default                |
 |---------------------------|---------|-------------------------------|------------------------|
 | [:singularity][:port]     | Integer | The singularity port          | 7092                   |
@@ -24,6 +25,19 @@ You can also find comments in [attributes/default.rb](https://github.com/evertru
 | [:singularity][:data_dir] | String  | Data directory                | /var/lib/singularity   |
 | [:singularity][:log_dir]  | String  | Log directory                 | /var/log/singularityy  |
 | [:singularity][:conf_dir] | String  | Config directory              | /etc/singularity       |
+
+## Database Attributes
+
+| Key                                           | Type    | Description        | Default     |
+|-----------------------------------------------|---------|--------------------|-------------|
+| [:singularity][:app_mysql_defaults][:adapter] | String  | DB Adapter         | 'mysql2'    |
+| [:singularity][:app_mysql_defaults][:pool]    | Integer | DB Connection Pool | 20          |
+| [:singularity][:app_mysql_defaults][:timeout] | Integer | DB Timeout         | 5000        |
+| [:singularity][:database][:host]              | String  | DB Host            | localhost   |
+| [:singularity][:database][:port]              | Integer | DB Port Num        | 3306        |
+| [:singularity][:database][:db_name]           | String  | DB Name            | singularity |
+| [:singularity][:database][:username]          | String  | DB Username        | singularity |
+| [:singularity][:database][:password]          | String  | DB Password        | 9thlevel    |
 
 
 ## Contributing
