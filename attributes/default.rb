@@ -7,6 +7,8 @@ default[:singularity][:home] = '/usr/local/singularity'
 default[:singularity][:data_dir] = '/var/lib/singularity'
 default[:singularity][:log_dir] = '/var/log/singularity'
 default[:singularity][:conf_dir] = '/etc/singularity'
+default[:singularity][:install_type] = 'package'
+default[:singularity][:log_level] = 'INFO'
 default[:singularity][:base_url] =
   "http://#{node[:fqdn]}:#{node[:singularity][:port]}/singularity"
 
@@ -19,10 +21,6 @@ default[:singularity][:database][:port] = '3306'
 default[:singularity][:database][:db_name] = 'singularity'
 default[:singularity][:database][:username] = 'singularity'
 default[:singularity][:database][:password] = '9thlevel'
-
-default[:singularity][:install_type] = 'package'
-
-default[:singularity][:log_level] = 'INFO'
 
 set[:et_mesos][:type] = 'mesosphere'
 set[:et_mesos][:mesosphere][:with_zookeeper] = true
