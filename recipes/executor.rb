@@ -33,7 +33,7 @@ when 'package'
   end
 
   link "#{node[:singularity][:home]}/bin/SingularityExecutor" do
-    to "#{node[:singularity][:home]}/bin/SingularityExecutor-0.4.2-shaded.jar"
+    to "#{node[:singularity][:home]}/bin/SingularityExecutor-#{node[:singularity][:version]}-shaded.jar"
   end
 when 'source'
   include_recipe 'singularity::source'
