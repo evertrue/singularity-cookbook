@@ -28,4 +28,11 @@ shared_examples_for 'an executor install' do
       it { is_expected.to include 'FAKE_SECRET_ACCESS_KEY' }
     end
   end
+
+  describe file '/usr/local/singularity/bin/singularity-executor' do
+    describe '#content' do
+      subject { super().content }
+      it { is_expected.to include '/usr/local/singularity/bin/SingularityExecutor' }
+    end
+  end
 end
