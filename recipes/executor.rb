@@ -69,3 +69,7 @@ end
     variables(creds: data_bag_item('secrets', 'aws_credentials')['Singularity'])
   end
 end
+
+template "#{node[:singularity][:home]}/bin/singularity-executor" do
+  mode '0755'
+end
