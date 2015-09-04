@@ -61,9 +61,9 @@ end
 
 %w(executor
    base
-   s3base).each do |prop_file|
-  template "/etc/singularity.#{prop_file}.properties" do
-    source "singularity.#{prop_file}.properties.erb"
+   s3base).each do |executor_conf|
+  template "/etc/singularity.#{executor_conf}.yaml" do
+    source "singularity.#{executor_conf}.yaml.erb"
     owner  'root'
     group  'root'
     mode   0644
