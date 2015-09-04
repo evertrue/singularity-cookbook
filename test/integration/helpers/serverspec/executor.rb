@@ -1,4 +1,14 @@
 shared_examples_for 'an executor install' do
+  ['/usr/local/singularity/bin',
+   '/var/lib/singularity/executor-tasks'].each do |dir|
+    describe file dir do
+      it { is_expected.to be_directory }
+      it { is_expected.to be_owned_by 'singularity' }
+      it { is_expected.to be_grouped_into 'singularity' }
+      it { is_expected.to be_mode 755 }
+    end
+  end
+
   %w(executor
      base
      s3base).each do |prop_file|

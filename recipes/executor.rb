@@ -19,6 +19,17 @@
 
 include_recipe 'singularity::user'
 
+["#{node[:singularity][:home]}/bin",
+ "#{node[:singularity][:data_dir]}/executor-tasks"].each do |dir|
+  directory dir do
+    owner     node[:singularity][:user]
+    group     node[:singularity][:user]
+    mode      0755
+    recursive true
+    action    :create
+  end
+end
+
 case node[:singularity][:install_type]
 when 'package'
   include_recipe 'maven'
@@ -37,17 +48,6 @@ when 'package'
   end
 when 'source'
   include_recipe 'singularity::source'
-
-  ["#{node[:singularity][:home]}/bin",
-   "#{node[:singularity][:data_dir]}/executor-tasks"].each do |dir|
-    directory dir do
-      owner     node[:singularity][:user]
-      group     node[:singularity][:user]
-      mode      0755
-      recursive true
-      action    :create
-    end
-  end
 
   remote_file "#{node[:singularity][:home]}/bin/SingularityExecutor" do
     mode     0755
