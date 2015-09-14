@@ -45,17 +45,8 @@ template '/etc/init/singularity.conf' do
   notifies :restart, 'service[singularity]'
 end
 
-case node[:singularity][:install_type]
-when 'package'
-  service_notifier = 'maven[SingularityService]'
-when 'source'
-  service_notifier = "remote_file[#{node[:singularity][:home]}/bin/" \
-                     "SingularityService-#{node[:singularity][:version]}-shaded.jar]"
-end
-
 service 'singularity' do
   provider   Chef::Provider::Service::Upstart
   supports   status: true, restart: true
   action     [:enable, :start]
-  subscribes :restart, service_notifier
 end
