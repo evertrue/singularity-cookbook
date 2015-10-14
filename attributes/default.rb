@@ -39,3 +39,5 @@ set[:java][:jdk_version] = '7'
 set[:java][:set_default] = true
 set[:java][:ark_timeout] = 10
 set[:java][:ark_retries] = 3
+
+default[:singularity][:install_mysql] = true
