@@ -1,3 +1,18 @@
 #!/usr/bin/env bash
 
-java -Djava.library.path=/usr/local/lib -jar <%= node[:singularity][:home] %>/bin/SingularityExecutor
+if [ -n "$EXECUTOR_DEBUG" ]; then
+  set -x
+
+  echo "Running the Singularity Executor with args: ${@}"
+  echo "Exports:"
+
+  export
+
+  echo
+  echo "Set:"
+  set
+fi
+
+java \
+  -Djava.library.path=/usr/local/lib \
+  -jar <%= node[:singularity][:home] %>/bin/SingularityExecutor
