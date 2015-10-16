@@ -35,7 +35,7 @@ execute 'migrate_singularity_db' do
 end
 
 cookbook_file "#{node[:singularity][:home]}/mysql/migrations.sql" do
-  source   'migrations.sql'
+  source 'migrations.sql'
   if node[:singularity][:install_mysql]
     notifies :restart, 'mysql_service[default]', :immediately
   end
