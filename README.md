@@ -1,5 +1,5 @@
 # singularity-cookbook
-
+   
 This cookbook provides the dependencies for the Singularity Mesos framework:
 
 - Mesos: [et_mesos](https://supermarket.chef.io/cookbooks/et_mesos) cookbook
