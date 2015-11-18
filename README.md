@@ -20,8 +20,8 @@ You can also find comments in [attributes/default.rb](https://github.com/evertru
 | `[:singularity][:port]`         | Integer | The singularity port          | 7092                   |
 | `[:singularity][:user]`         | String  | User for singularity          | singularity            |
 | `[:singularity][:group]`        | String  | Group for singularity         | singularity            |
-| `[:singularity][:git_ref]`      | String  | Git ref to install from       | Singularity-0.4.3      |
-| `[:singularity][:version]`      | String  | Version number of singularity | 0.4.3                  |
+| `[:singularity][:git_ref]`      | String  | Git ref to install from       | Singularity-0.4.5      |
+| `[:singularity][:version]`      | String  | Version number of singularity | 0.4.5                  |
 | `[:singularity][:home]`         | String  | Home directory                | /usr/local/singularity |
 | `[:singularity][:data_dir]`     | String  | Data directory                | /var/lib/singularity   |
 | `[:singularity][:log_dir]`      | String  | Log directory                 | /var/log/singularityy  |
