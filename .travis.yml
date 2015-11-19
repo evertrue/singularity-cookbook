@@ -34,8 +34,8 @@ notifications:
 env:
   matrix:
   - SUITE: default
-  - SUITE: executor_package
-  - SUITE: executor_source
+  - SUITE: executor-package
+  - SUITE: executor-source
   global:
   - CHEF_BIN=/opt/chefdk/bin
   - KITCHEN_YAML=.kitchen.cloud.yml
