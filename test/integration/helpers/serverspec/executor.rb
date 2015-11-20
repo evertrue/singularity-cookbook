@@ -27,7 +27,7 @@ shared_examples_for 'an executor install' do
   describe file '/etc/singularity.base.yaml' do
     describe '#content' do
       subject { super().content }
-      it { is_expected.to include 'loggingDirectory: /var/log/singularity' }
+      it { is_expected.to include 'loggingDirectory: /var/log/singularity-executor' }
     end
   end
 
