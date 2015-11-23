@@ -1,8 +1,8 @@
 default[:singularity][:port] = 7092
 default[:singularity][:user] = 'singularity'
 default[:singularity][:group] = 'singularity'
-default[:singularity][:git_ref] = 'Singularity-0.4.3'
-default[:singularity][:version] = '0.4.3'
+default[:singularity][:git_ref] = 'Singularity-0.4.5'
+default[:singularity][:version] = '0.4.5'
 default[:singularity][:home] = '/usr/local/singularity'
 default[:singularity][:data_dir] = '/var/lib/singularity'
 default[:singularity][:log_dir] = '/var/log/singularity'

@@ -11,27 +11,27 @@ shared_examples_for 'an executor install' do
 
   %w(executor
      base
-     s3base).each do |prop_file|
-    describe file "/etc/singularity.#{prop_file}.properties" do
+     s3base).each do |executor_conf|
+    describe file "/etc/singularity.#{executor_conf}.yaml" do
       it { is_expected.to be_file }
     end
   end
 
-  describe file '/etc/singularity.executor.properties' do
+  describe file '/etc/singularity.executor.yaml' do
     describe '#content' do
       subject { super().content }
-      it { is_expected.to include 'executor.s3.uploader.bucket=example' }
+      it { is_expected.to include 's3UploaderBucket: example' }
     end
   end
 
-  describe file '/etc/singularity.base.properties' do
+  describe file '/etc/singularity.base.yaml' do
     describe '#content' do
       subject { super().content }
-      it { is_expected.to include 'root.log.directory=/var/log/singularity' }
+      it { is_expected.to include 'loggingDirectory: /var/log/singularity-executor' }
     end
   end
 
-  describe file '/etc/singularity.s3base.properties' do
+  describe file '/etc/singularity.s3base.yaml' do
     describe '#content' do
       subject { super().content }
       it { is_expected.to include 'FAKE_ACCESS_KEY_ID' }
