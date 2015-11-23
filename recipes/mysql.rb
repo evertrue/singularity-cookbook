@@ -36,9 +36,9 @@ mysql2_chef_gem 'default' do
 end
 
 mysql_service 'default' do
-  port node[:mysql][:port]
-  bind_address node[:mysql][:bind_address]
-  version node[:mysql][:version]
+  port node['mysql']['port']
+  bind_address node['mysql']['bind_address']
+  version node['mysql']['version']
   initial_root_password server_root_password
   action [:create, :start]
 end
@@ -61,15 +61,15 @@ mysql_connection_info = {
   password: server_root_password
 }
 
-mysql_database node[:singularity][:database][:db_name] do
+mysql_database node['singularity']['database']['db_name'] do
   connection mysql_connection_info
   action :create
 end
 
-mysql_database_user node[:singularity][:database][:username] do
+mysql_database_user node['singularity']['database']['username'] do
   connection mysql_connection_info
-  password node[:singularity][:database][:password]
-  database_name node[:singularity][:database][:db_name]
+  password node['singularity']['database']['password']
+  database_name node['singularity']['database']['db_name']
   host '%'
   privileges [:all]
   action [:grant]

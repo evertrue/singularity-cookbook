@@ -17,7 +17,7 @@
 # limitations under the License.
 #
 
-user node[:singularity][:user] do
+user node['singularity']['user'] do
   supports manage_home: true
-  home node[:singularity][:home]
+  home node['singularity']['home']
 end

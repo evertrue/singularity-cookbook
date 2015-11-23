@@ -17,26 +17,26 @@
 # limitations under the License.
 #
 
-template "#{node[:singularity][:conf_dir]}/singularity.yaml" do
+template "#{node['singularity']['conf_dir']}/singularity.yaml" do
   source 'singularity.yaml.erb'
   variables(baragon_url:
-    "http://localhost:#{node[:baragon][:service_yaml][:server][:connector][:port]}" \
+    "http://localhost:#{node['baragon']['service_yaml']['server']['connector']['port']}" \
     '/baragon/v2')
 end
 
 execute 'migrate_singularity_db' do
-  command "#{node[:java][:java_home]}/bin/java " \
-          "-jar #{node[:singularity][:home]}/bin/" \
-          "SingularityService-#{node[:singularity][:version]}-shaded.jar " \
-          "db migrate #{node[:singularity][:conf_dir]}/singularity.yaml " \
-          "--migrations #{node[:singularity][:home]}/mysql/migrations.sql " \
-          "&& touch #{node[:singularity][:conf_dir]}/migration_ran"
+  command "#{node['java']['java_home']}/bin/java " \
+          "-jar #{node['singularity']['home']}/bin/" \
+          "SingularityService-#{node['singularity']['version']}-shaded.jar " \
+          "db migrate #{node['singularity']['conf_dir']}/singularity.yaml " \
+          "--migrations #{node['singularity']['home']}/mysql/migrations.sql " \
+          "&& touch #{node['singularity']['conf_dir']}/migration_ran"
   action  :nothing
 end
 
-cookbook_file "#{node[:singularity][:home]}/mysql/migrations.sql" do
+cookbook_file "#{node['singularity']['home']}/mysql/migrations.sql" do
   source 'migrations.sql'
-  if node[:singularity][:install_mysql]
+  if node['singularity']['install_mysql']
     notifies :restart, 'mysql_service[default]', :immediately
   end
   notifies :run, 'execute[migrate_singularity_db]'

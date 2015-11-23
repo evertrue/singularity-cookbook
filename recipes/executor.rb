@@ -19,44 +19,44 @@
 
 include_recipe 'singularity::user'
 
-["#{node[:singularity][:home]}/bin",
- "#{node[:singularity][:data_dir]}/executor-tasks"].each do |dir|
+["#{node['singularity']['home']}/bin",
+ "#{node['singularity']['data_dir']}/executor-tasks"].each do |dir|
   directory dir do
-    owner     node[:singularity][:user]
-    group     node[:singularity][:user]
+    owner     node['singularity']['user']
+    group     node['singularity']['user']
     mode      0755
     recursive true
     action    :create
   end
 end
 
-case node[:singularity][:install_type]
+case node['singularity']['install_type']
 when 'package'
   include_recipe 'maven'
 
   maven 'SingularityExecutor' do
     group_id   'com.hubspot'
     classifier 'shaded'
-    version    node[:singularity][:version]
-    dest       "#{node[:singularity][:home]}/bin"
+    version    node['singularity']['version']
+    dest       "#{node['singularity']['home']}/bin"
     mode       0755
-    owner      node[:singularity][:user]
+    owner      node['singularity']['user']
   end
 
-  link "#{node[:singularity][:home]}/bin/SingularityExecutor" do
-    to "#{node[:singularity][:home]}/bin/SingularityExecutor-" \
-       "#{node[:singularity][:version]}-shaded.jar"
+  link "#{node['singularity']['home']}/bin/SingularityExecutor" do
+    to "#{node['singularity']['home']}/bin/SingularityExecutor-" \
+       "#{node['singularity']['version']}-shaded.jar"
   end
 when 'source'
   include_recipe 'singularity::source'
 
-  remote_file "#{node[:singularity][:home]}/bin/SingularityExecutor" do
+  remote_file "#{node['singularity']['home']}/bin/SingularityExecutor" do
     mode     0755
-    source   "file://#{Chef::Config[:file_cache_path]}/Singularity/" \
+    source   "file://#{Chef::Config['file_cache_path']}/Singularity/" \
              'SingularityExecutor/target/SingularityExecutor'
   end
 else
-  fail "Invalid install type: #{node[:singularity][:install_type]}"
+  fail "Invalid install type: #{node['singularity']['install_type']}"
 end
 
 %w(executor
@@ -71,6 +71,6 @@ end
   end
 end
 
-template "#{node[:singularity][:home]}/bin/singularity-executor" do
+template "#{node['singularity']['home']}/bin/singularity-executor" do
   mode '0755'
 end

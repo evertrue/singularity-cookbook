@@ -22,20 +22,20 @@ include_recipe 'git'
 include_recipe 'maven'
 
 directory "#{Chef::Config[:file_cache_path]}/Singularity" do
-  owner node[:singularity][:user]
+  owner node['singularity']['user']
 end
 
-directory "#{node[:singularity][:home]}/bin" do
-  owner     node[:singularity][:user]
-  group     node[:singularity][:user]
+directory "#{node['singularity']['home']}/bin" do
+  owner     node['singularity']['user']
+  group     node['singularity']['user']
   mode      0755
   recursive true
 end
 
 git "#{Chef::Config[:file_cache_path]}/Singularity" do
   repository 'https://github.com/HubSpot/Singularity.git'
-  reference  node[:singularity][:git_ref]
-  user       node[:singularity][:user]
+  reference  node['singularity']['git_ref']
+  user       node['singularity']['user']
   action     :export
 end
 
@@ -43,19 +43,19 @@ execute 'build_singularity' do
   action  :run
   # Maven (or rather npm) has issues with
   # being run as root.
-  user    node[:singularity][:user]
-  environment('HOME' => node[:singularity][:home])
-  command "#{node[:maven][:m2_home]}/bin/mvn clean package -DskipTests"
+  user    node['singularity']['user']
+  environment('HOME' => node['singularity']['home'])
+  command "#{node['maven']['m2_home']}/bin/mvn clean package -DskipTests"
   creates "#{Chef::Config[:file_cache_path]}/Singularity/" \
           'SingularityService/target/' \
-          "SingularityService-#{node[:singularity][:version]}-shaded.jar"
+          "SingularityService-#{node['singularity']['version']}-shaded.jar"
   cwd     "#{Chef::Config[:file_cache_path]}/Singularity"
 end
 
-remote_file "#{node[:singularity][:home]}/bin/" \
-            "SingularityService-#{node[:singularity][:version]}-shaded.jar" do
+remote_file "#{node['singularity']['home']}/bin/" \
+            "SingularityService-#{node['singularity']['version']}-shaded.jar" do
   mode   0644
   source "file://#{Chef::Config[:file_cache_path]}/Singularity/" \
          'SingularityService/target/' \
-         "SingularityService-#{node[:singularity][:version]}-shaded.jar"
+         "SingularityService-#{node['singularity']['version']}-shaded.jar"
 end

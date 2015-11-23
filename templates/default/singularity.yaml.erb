@@ -4,7 +4,7 @@ server:
   applicationContextPath: /
   connector:
     type: http
-    port: <%= node[:singularity][:port] %>
+    port: <%= node['singularity']['port'] %>
   requestLog:
     appenders:
       - type: file
@@ -13,12 +13,12 @@ server:
 
 database:
   driverClass: com.mysql.jdbc.Driver
-  user: <%= node[:singularity][:database][:username] %>
-  password: <%= node[:singularity][:database][:password] %>
-  url: jdbc:mysql://<%= node[:singularity][:database][:host] %>:<%= node[:singularity][:database][:port] %>/<%= node[:singularity][:database][:db_name] %>
+  user: <%= node['singularity']['database']['username'] %>
+  password: <%= node['singularity']['database']['password'] %>
+  url: jdbc:mysql://<%= node['singularity']['database']['host'] %>:<%= node['singularity']['database']['port'] %>/<%= node['singularity']['database']['db_name'] %>
 
 mesos:
-  master: <%= node[:et_mesos][:master][:zk] %>
+  master: <%= node['et_mesos']['master']['zk'] %>
   defaultCpus: 1
   defaultMemory: 128
   frameworkName: Singularity
@@ -26,7 +26,7 @@ mesos:
   frameworkFailoverTimeout: 1000000
 
 zookeeper:
-  quorum: <%= node[:singularity][:zk_hosts].join(',') %>
+  quorum: <%= node['singularity']['zk_hosts'].join(',') %>
   zkNamespace: singularity
   sessionTimeoutMillis: 60000
   connectTimeoutMillis: 5000
@@ -39,7 +39,7 @@ logging:
 
 ui:
   title: Singularity (<%= node.chef_environment %>)
-  baseUrl: <%= node[:singularity][:base_url] %>
+  baseUrl: <%= node['singularity']['base_url'] %>
 
 loadBalancerUri: <%= @baragon_url.gsub(/\/$/, '') %>/request
 
