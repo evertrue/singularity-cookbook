@@ -13,6 +13,6 @@ if [ -n "$EXECUTOR_DEBUG" ]; then
   set
 fi
 
-java \
+<%= node['java']['java_home'] %>/bin/java \
   -Djava.library.path=/usr/local/lib \
   -jar <%= node[:singularity][:home] %>/bin/SingularityExecutor
