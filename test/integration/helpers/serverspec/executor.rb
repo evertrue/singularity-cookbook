@@ -43,6 +43,8 @@ shared_examples_for 'an executor install' do
     describe '#content' do
       subject { super().content }
       it { is_expected.to include '/usr/local/singularity/bin/SingularityExecutor' }
+      it { is_expected.to include "-Xmx192M \\\n" }
+      it { is_expected.to include "-test \\\n" }
     end
   end
 end

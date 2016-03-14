@@ -57,6 +57,9 @@ suites:
       singularity:
         executor:
           s3_bucket: example
+          extra_args:
+            - '-Xmx192M'
+            - '-test'
 
   - name: executor_source
     run_list:

@@ -14,5 +14,8 @@ if [ -n "$EXECUTOR_DEBUG" ]; then
 fi
 
 <%= node['java']['java_home'] %>/bin/java \
+  <% node['singularity']['executor']['extra_args'].each do |arg| -%>
+  <%= arg %> \
+  <%- end %>
   -Djava.library.path=/usr/local/lib \
   -jar <%= node['singularity']['home'] %>/bin/SingularityExecutor
