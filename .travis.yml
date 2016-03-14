@@ -17,17 +17,17 @@ before_install:
 - echo 'node_name "trubot"' >> ~/.chef/knife.rb
 - chmod 600 ~/.ssh/travis_ci_ec2.pem
 install:
-- eval "$(${CHEF_BIN}/chef shell-init bash)"
-- "${CHEF_BIN}/chef gem install kitchen-ec2"
-- "${CHEF_BIN}/berks"
+- eval "$(chef shell-init bash)"
+- 'chef gem install kitchen-ec2'
+- 'berks'
 before_script:
-- "${CHEF_BIN}/chef --version"
-- "${CHEF_BIN}/rubocop --version"
-- "${CHEF_BIN}/foodcritic --version"
+- 'chef --version'
+- 'rubocop --version'
+- 'foodcritic --version'
 script:
-- "${CHEF_BIN}/rubocop"
-- "${CHEF_BIN}/foodcritic ."
-- "${CHEF_BIN}/kitchen test ${SUITE} -d always"
+- 'rubocop'
+- 'foodcritic .'
+- 'kitchen test ${SUITE} -d always'
 notifications:
   slack:
     secure: dLmroNHSMcoGd6S6FvyW8QfodL9MKEfsmPVe9oru0tCJiZuiDjAmrNYlZDPWfS9274uK2wElAr7qypVcL5PVjMOYnlBOnV4C0pvM5zkzbNi3qBAjokqeS2ukKFFUt3L12+g4Mg6S/gKuDSxhQh7wzCa8pVKOjYXHaKcWi5YcfaJpfRmN8xxDDOz8dgikBknyRhnkj/I3hR+Lse5zaDaFsBHtWWyqDnd81UGdpsYrZne+t/Py4PiGXyWvMz98PA/jyac5DxbmzBBbPkz1JS+mXQblgcP6f7MtzOf5jwRsiXCZs6vzJXC4Hzomp4msdnJY/5i65yoaowOdhHclUehryuEgLT5cZMksScjNUdwPCILLP6EZHJieN5QDRc9uYd1UyckpUj1Pu8SFyO/cKBNZB9VMaUu92jdcm1zp2gZLooZNjzSH1oL5IUM0nfMyQxe2CqAP79M/Doc07lKE90LjbYt/wrOUZjNVCgOq7Fm8aiHJTJ4sHSeYYmfCj/SvzpUJ6maJqW+LzkdaSeK3UfkLeXN6lbhVe8vfSXKzLau3gZYj8xa1ppO1AJ2ooD8JwAQbDEErQgJmIXpF13mRxJAsKSO1g3E+8LnJagAvOp2anjAxySa0ejv39MgIWcT1JtjIe6MTrSECRvVCqVvKr2xXCzLNJlz1Ff/jDFP7raJsI5Q=
@@ -37,7 +37,6 @@ env:
   - SUITE: executor-package
   - SUITE: executor-source
   global:
-  - CHEF_BIN=/opt/chefdk/bin
   - KITCHEN_YAML=.kitchen.cloud.yml
   - secure: WpQsZOaYNcSwz9ALHl5A+HOBe5/8Y+EPqrxd1CBxHFFyPDwU8M+VpnkoKIKlzwfRFpopOJDuVF2Pkujhdu/WA23RAUbDO4i+bE5qoWaOJi9jcDB8wXHne7CKMD0aD4yn+doIqZW5CPkeS6JOvTCiRwnTY/w3OXO0lgBTGqdyKT2pwDJ0I/kJM9srg5I1m1zR5oXHmi7gJqqBDygwwLPAP0+83vZyXNZ/1yV/AZG+wLB7TwKgPT1AW84O22wdYoz+h/o5OcRxexIG3ggABiFtFaTkD8kpQVhV1RGTDaMHPhTUWaimVa9FAc227DaakhDwOaYwPY0jFBPiqIwNMUCRSV2rYzAopSUvSjOEE39gjPpVPhaqFZjqNE0Pfo17s+oq7i9xpvh/UKvZ2h+TnQEUdb6PQWqYjdFemaRVczuxHHUv9AOF2hL2paHdACcCSCrc0kBG40/2fkMbojS3tfE9r1wSngvtIF7fb9vnKwIv04k9Px7JoehE+dFwfGp8svFbKbPneARg0wqD2f6UHNMHJqRnybfZVFId9L4tdaP6sck+Zja0WjtCBLz8q+Z+ahVzRMboAzh7Kouy0Gio5FSVJIQNeaB3F2YBBCQtm4FBk7zDXNA/PPivr8kLT5ItNiHVcDq7vRHuOSbPWKOl/W3NYVkWizo73IOJ4qxFIKLOz18=
   - secure: utE/JzBKnXjgv5L400ea7w4hl5TO/nX+uc81uPC0q8An6/SEzXygPEq0u8HW1lb+r8OPkVV0MgVRzre3vfncx+xr1d7pPx5v1r+JlOPiaH9xBzj4gmLnlAkNd14YiF7CEP00nIOgg++MY0msA/SwhO43zSoUqy+udkT07S1rcLxzj0iRPKZoBBNAd/LwXkge++T9e8HqR2mTeDJ/H4FHXs/VqeDosVDtg0iE3ZxLJhEPQ5b+EMTDtvn/OYid+CRJNbERqMdwfMDDF1dvOKsyXORoRrP9LTe5RcpT6r1VRQ9N1/xWxG0uH0DDChKCGVdINjTlpgunC7024wFf47ImHBe9QOFfv3iDPbT7STwzZNMTGon9R6aZvRYlHEN6z7y/899DmenLZMuhhk3D2bv7JrjLPzpBTjbLMYE5IcAzhSk3Rj2KHqXWQiLWr9eLkdQQE2CupuZ2ow+j8EwwxYv6LJ7EOak8zWX2mLEhc5teLp6/L1p2zKZNM7WwE87vhQRWA8xQKeAs+jxE/zW+47B1nSESwGIb7VC7kPlAhDviiuiAnzvOe2RtCqNHjNqhSDJIsgIS/2gK3ohjrGXx4jX+GSIkC2G3ptDRcYxv2Aq8S+qiIjveuG3qxO6GiH/KI4R7fschYVMxshn/UAjDZzGhCJ1dlWmPkWrRShbwWhcFrI4=
