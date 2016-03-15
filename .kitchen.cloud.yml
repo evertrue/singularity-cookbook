@@ -32,6 +32,8 @@ suites:
       tags:
         Name: singularity-default-ubuntu-1404
     attributes:
+      et_logger:
+        generate_cert: true
       singularity:
         port: 7099
         zk_hosts:
@@ -50,6 +52,7 @@ suites:
   - name: executor_package
     run_list:
       - recipe[singularity::executor]
+      - recipe[et_logger::forwarder]
     driver_config:
       tags:
         Name: singularity-executor_package-ubuntu-1404

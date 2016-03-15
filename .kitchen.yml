@@ -46,7 +46,10 @@ suites:
   - name: executor_package
     run_list:
       - recipe[singularity::executor]
+      - recipe[et_logger::forwarder]
     attributes:
+      et_logger:
+        generate_cert: true
       singularity:
         executor:
           s3_bucket: example

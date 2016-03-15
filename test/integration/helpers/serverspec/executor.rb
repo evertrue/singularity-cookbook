@@ -47,4 +47,19 @@ shared_examples_for 'an executor install' do
       it { is_expected.to include "-test \\\n" }
     end
   end
+
+  describe file '/etc/filebeat/conf.d/prospector-singularity-executor.yml' do
+    it { is_expected.to be_file }
+    describe '#content' do
+      subject { super().content }
+      it do
+        is_expected.to contain 'filebeat:
+  prospectors:
+  - paths:
+    - "/var/log/singularity-executor/singularity-executor.log"
+    input_type: log
+    document_type: singularity-executor'
+      end
+    end
+  end
 end
