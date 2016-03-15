@@ -1,0 +1,24 @@
+{
+  "name": "default-logs-1b",
+  "chef_environment": "_default",
+  "run_list": [
+    "recipe[et_base]",
+    "recipe[logserver]",
+    "role[loghost]"
+  ],
+  "automatic": {
+    "ipaddress": "10.99.5.247",
+    "fqdn": "default-logs-1b",
+    "cloud": {
+      "local_ipv4": "10.99.5.247"
+    },
+    "recipes": [
+      "rsyslog::default",
+      "rsyslog::server",
+      "logserver::default"
+    ],
+    "roles": [
+      "loghost"
+    ]
+  }
+}
