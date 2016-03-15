@@ -74,3 +74,11 @@ end
 template "#{node['singularity']['home']}/bin/singularity-executor" do
   mode '0755'
 end
+
+node.default['filebeat']['prospectors']['singularity-executor']['filebeat']['prospectors'] = [
+  {
+    'paths' => ["#{node['singularity']['executor']['log_dir']}/singularity-executor.log"],
+    'input_type' => 'log',
+    'document_type' => 'singularity-executor'
+  }
+]
