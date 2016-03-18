@@ -34,8 +34,9 @@ execute 'migrate_singularity_db' do
   action  :nothing
 end
 
-cookbook_file "#{node['singularity']['home']}/mysql/migrations.sql" do
-  source 'migrations.sql'
+remote_file "#{node['singularity']['home']}/mysql/migrations.sql" do
+  source 'https://raw.githubusercontent.com/HubSpot/Singularity/' \
+         "#{node['singularity']['git_ref']}/mysql/migrations.sql"
   if node['singularity']['install_mysql']
     notifies :restart, 'mysql_service[default]', :immediately
   end
