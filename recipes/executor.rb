@@ -56,7 +56,7 @@ when 'source'
              'SingularityExecutor/target/SingularityExecutor'
   end
 else
-  fail "Invalid install type: #{node['singularity']['install_type']}"
+  raise "Invalid install type: #{node['singularity']['install_type']}"
 end
 
 %w(executor
