@@ -17,6 +17,7 @@
 # limitations under the License.
 #
 
+node.set['apt']['compile_time_update'] = true
 include_recipe 'build-essential'
 include_recipe 'git'
 include_recipe 'maven'
