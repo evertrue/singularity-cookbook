@@ -26,8 +26,6 @@ suites:
   - name: default
     run_list:
       - recipe[singularity::default]
-      - recipe[zookeeper::default]
-      - recipe[zookeeper::service]
     driver:
       tags:
         Name: singularity-default-ubuntu-1404
@@ -42,8 +40,6 @@ suites:
         slave:
           attributes:
             rackid: us-east-1b
-      zookeeper:
-        service_style: upstart
 
   - name: executor_package
     run_list:
