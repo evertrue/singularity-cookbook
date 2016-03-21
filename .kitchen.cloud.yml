@@ -37,8 +37,6 @@ suites:
         zk_hosts:
           - 'localhost:2181'
       et_mesos:
-        mesosphere:
-          with_zookeeper: false
         master:
           quorum: 1
         slave:
