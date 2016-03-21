@@ -16,7 +16,7 @@ provisioner:
 
 platforms:
   - name: ubuntu-14.04
-    driver_config:
+    driver:
       image_id: ami-9883c6f2
       tags:
         Env: public
@@ -28,7 +28,7 @@ suites:
       - recipe[singularity::default]
       - recipe[zookeeper::default]
       - recipe[zookeeper::service]
-    driver_config:
+    driver:
       tags:
         Name: singularity-default-ubuntu-1404
     attributes:
@@ -50,7 +50,7 @@ suites:
   - name: executor_package
     run_list:
       - recipe[singularity::executor]
-    driver_config:
+    driver:
       tags:
         Name: singularity-executor_package-ubuntu-1404
     attributes:
@@ -64,7 +64,7 @@ suites:
   - name: executor_source
     run_list:
       - recipe[singularity::executor]
-    driver_config:
+    driver:
       tags:
         Name: singularity-executor_source-ubuntu-1404
     attributes:
