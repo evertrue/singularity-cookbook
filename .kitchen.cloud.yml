@@ -8,6 +8,10 @@ driver:
   security_group_ids: ['ci-testing']
   instance_type: c3.large
   interface: public
+  tags:
+    Env: public
+    Type: test
+    Operator: <%= ENV['USER'] %>
 
 transport:
   name: sftp
@@ -18,10 +22,6 @@ provisioner:
 
 platforms:
   - name: ubuntu-14.04
-    driver:
-      tags:
-        Env: public
-        Type: test
 
 suites:
   - name: default
@@ -67,3 +67,6 @@ suites:
         install_type: source
         executor:
           s3_bucket: example
+          extra_args:
+            - '-Xmx192M'
+            - '-test'
