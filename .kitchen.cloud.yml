@@ -47,7 +47,7 @@ suites:
       - recipe[singularity::executor]
     driver:
       tags:
-        Name: singularity-executor_package-ubuntu-1404
+        Name: singularity-executor-package-ubuntu-1404
     attributes:
       singularity:
         executor:
@@ -61,7 +61,7 @@ suites:
       - recipe[singularity::executor]
     driver:
       tags:
-        Name: singularity-executor_source-ubuntu-1404
+        Name: singularity-executor-source-ubuntu-1404
     attributes:
       singularity:
         install_type: source
