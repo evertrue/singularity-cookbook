@@ -18,6 +18,7 @@
 #
 
 include_recipe 'singularity::user'
+include_recipe 'java'
 
 ["#{node['singularity']['home']}/bin",
  "#{node['singularity']['data_dir']}/executor-tasks"].each do |dir|
