@@ -18,6 +18,7 @@
 #
 
 include_recipe 'singularity::user'
+include_recipe 'java'
 
 ["#{node['singularity']['home']}/bin",
  "#{node['singularity']['data_dir']}/executor-tasks"].each do |dir|
@@ -52,8 +53,8 @@ when 'source'
 
   remote_file "#{node['singularity']['home']}/bin/SingularityExecutor" do
     mode     0755
-    source   "file://#{Chef::Config['file_cache_path']}/Singularity/" \
-             'SingularityExecutor/target/SingularityExecutor'
+    source   "file://#{Chef::Config['file_cache_path']}/Singularity/SingularityExecutor/" \
+             "target/SingularityExecutor-#{node['singularity']['version']}-shaded.jar"
   end
 else
   raise "Invalid install type: #{node['singularity']['install_type']}"

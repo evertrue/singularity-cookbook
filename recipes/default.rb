@@ -17,10 +17,10 @@
 # limitations under the License.
 #
 
-include_recipe 'singularity::user'
-include_recipe 'et_mesos::master'
-include_recipe 'singularity::mysql' if node['singularity']['install_mysql']
 include_recipe 'java'
+include_recipe 'et_mesos::master'
+include_recipe 'singularity::user'
+include_recipe 'singularity::mysql' if node['singularity']['install_mysql']
 
 [node['singularity']['conf_dir'],
  node['singularity']['log_dir'],
