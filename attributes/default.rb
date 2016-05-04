@@ -23,7 +23,7 @@ default['singularity']['database']['username'] = 'singularity'
 default['singularity']['database']['password'] = '9thlevel'
 
 set['et_mesos']['type'] = 'mesosphere'
-set['et_mesos']['mesosphere']['with_zookeeper'] = true
+default['et_mesos']['mesosphere']['with_zookeeper'] = true
 
 default['et_mesos']['master']['zk'] = 'zk://localhost:2181/mesos'
 default['et_mesos']['slave']['master'] = 'zk://localhost:2181/mesos'
@@ -34,10 +34,9 @@ default['mysql']['version'] = '5.5'
 
 default['baragon']['service_yaml']['server']['connector']['port'] = 8088
 
-set['java']['jdk_version'] = '7'
-
-set['java']['set_default'] = true
-set['java']['ark_timeout'] = 10
-set['java']['ark_retries'] = 3
+default['java']['jdk_version'] = '7'
+default['java']['set_default'] = true
+default['java']['ark_timeout'] = 10
+default['java']['ark_retries'] = 3
 
 default['singularity']['install_mysql'] = true
