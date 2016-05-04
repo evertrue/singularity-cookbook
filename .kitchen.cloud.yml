@@ -10,6 +10,7 @@ driver:
   interface: public
 
 transport:
+  name: sftp
   ssh_key: <%= ENV['EC2_SSH_KEY_PATH'] %>
 
 provisioner:
