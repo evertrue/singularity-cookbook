@@ -43,6 +43,21 @@ suites:
       zookeeper:
         service_style: upstart
 
+  - name: sentry
+    run_list:
+      - recipe[singularity::default]
+    attribute:
+      et_mesos:
+        master:
+          quorum: 1
+        slave:
+          attributes:
+            rackid: us-east-1b
+      singularity:
+        config:
+          sentry:
+            dsn: http://sentry.example.com
+
   - name: executor_package
     run_list:
       - recipe[singularity::executor]

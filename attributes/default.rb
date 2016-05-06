@@ -41,3 +41,5 @@ default['java']['ark_timeout'] = 10
 default['java']['ark_retries'] = 3
 
 default['singularity']['install_mysql'] = true
+
+default['singularity']['config']['sentry'] = false
