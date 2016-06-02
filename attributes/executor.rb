@@ -6,3 +6,4 @@ default['singularity']['executor']['log_dir'] = '/var/log/singularity-executor'
 default['singularity']['executor']['extra_args'] = [
   '-Xmx128M'
 ]
+default['singularity']['executor']['log_file'] = 'service.log'
