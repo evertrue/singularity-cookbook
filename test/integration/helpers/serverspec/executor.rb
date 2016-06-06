@@ -21,6 +21,7 @@ shared_examples_for 'an executor install' do
     describe '#content' do
       subject { super().content }
       it { is_expected.to include 's3UploaderBucket: example' }
+      it { is_expected.to include 'serviceLog: service.log' }
     end
   end
 
