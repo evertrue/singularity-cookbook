@@ -19,9 +19,12 @@
 
 template "#{node['singularity']['conf_dir']}/singularity.yaml" do
   source 'singularity.yaml.erb'
-  variables(baragon_url:
-    "http://localhost:#{node['baragon']['service_yaml']['server']['connector']['port']}" \
-    '/baragon/v2')
+  variables(
+    baragon_url: 'http://localhost:' \
+                 "#{node['baragon']['service_yaml']['server']['connector']['port']}/" \
+                 'baragon/v2',
+    sentry: node['singularity']['config']['sentry']
+  )
 end
 
 execute 'migrate_singularity_db' do

@@ -46,3 +46,9 @@ loadBalancerUri: <%= @baragon_url.gsub(/\/$/, '') %>/request
 customExecutor:
   memoryMb: 128
   numCpus: 0.1
+
+<%- if @sentry %>
+sentry:
+  dsn: <%= @sentry['dsn'] %>
+  <% if @sentry['prefix'] %>prefix: <%= @sentry['prefix'] %><% end %>
+<%- end %>

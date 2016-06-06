@@ -42,6 +42,24 @@ suites:
           attributes:
             rackid: us-east-1b
 
+  - name: sentry
+    run_list:
+      - recipe[singularity::default]
+    driver:
+      tags:
+        Name: singularity-sentry-ubuntu-1404
+    attribute:
+      et_mesos:
+        master:
+          quorum: 1
+        slave:
+          attributes:
+            rackid: us-east-1b
+      singularity:
+        config:
+          sentry:
+            dsn: http://sentry.example.com
+
   - name: executor_package
     run_list:
       - recipe[singularity::executor]
