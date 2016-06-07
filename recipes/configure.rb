@@ -17,11 +17,8 @@
 # limitations under the License.
 #
 
-template "#{node['singularity']['conf_dir']}/singularity.yaml" do
-  source 'singularity.yaml.erb'
-  variables(baragon_url:
-    "http://localhost:#{node['baragon']['service_yaml']['server']['connector']['port']}" \
-    '/baragon/v2')
+file "#{node['singularity']['conf_dir']}/singularity.yaml" do
+  content JSON.parse(node['singularity']['singularity_yaml'].to_json).to_yaml
 end
 
 execute 'migrate_singularity_db' do
