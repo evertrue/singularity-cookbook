@@ -20,7 +20,11 @@
 include_recipe 'java'
 include_recipe 'et_mesos::master'
 include_recipe 'singularity::user'
-include_recipe 'singularity::mysql' if node['singularity']['install_mysql']
+
+if node['singularity']['install_mysql'] ||
+   node['singularity']['database']['host'] == 'localhost'
+  include_recipe 'singularity::mysql'
+end
 
 [node['singularity']['conf_dir'],
  node['singularity']['log_dir'],
