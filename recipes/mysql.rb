@@ -17,13 +17,13 @@
 # limitations under the License.
 #
 
-::Chef::Recipe.send(:include, OpenSSLCookbook::Password)
+::Chef::Recipe.send(:include, OpenSSLCookbook::RandomPassword)
 
 server_root_password = (
   if File.exist?('/etc/mysql-default/root_password')
     File.read('/etc/mysql-default/root_password').chomp
   else
-    secure_password
+    random_password
   end
 )
 
