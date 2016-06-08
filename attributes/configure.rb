@@ -26,7 +26,7 @@ default['singularity']['singularity_yaml'] = {
       "#{node['singularity']['database']['db_name']}"
   },
   'mesos' => {
-    'master' => node['et_mesos']['master']['zk'],
+    'master' => 'zk://localhost:2181',
     'defaultCpus' => 1,
     'defaultMemory' => 128,
     'frameworkName' => 'Singularity',
@@ -34,7 +34,7 @@ default['singularity']['singularity_yaml'] = {
     'frameworkFailoverTimeout' => 1_000_000
   },
   'zookeeper' => {
-    'quorum' => node['singularity']['zk_hosts'].join(','),
+    'quorum' => 'localhost:2181',
     'zkNamespace' => 'singularity',
     'sessionTimeoutMillis' => 60_000,
     'connectTimeoutMillis' => 5000,
