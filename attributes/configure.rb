@@ -46,7 +46,8 @@ default['singularity']['singularity_yaml'] = {
     'baseUrl' => node['singularity']['base_url']
   },
   'loadBalancerUri' =>
-    "http://localhost:#{node['baragon']['service_yaml']['server']['connector']['port']}/baragon/v2/request",
+    "http://localhost:#{node['baragon']['service_yaml']['server']['connector']['port']}" \
+    '/baragon/v2/request',
   'customExecutor' => {
     'memoryMb' => 128,
     'numCpus' => 0.1
