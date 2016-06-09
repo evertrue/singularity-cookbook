@@ -25,16 +25,13 @@ suites:
   - name: default
     run_list:
       - recipe[singularity::default]
-      - recipe[zookeeper::default]
-      - recipe[zookeeper::service]
+      - recipe[et_mesos::zookeeper]
     attributes:
       singularity:
         port: 7099
         zk_hosts:
           - 'localhost:2181'
       et_mesos:
-        package:
-          with_zookeeper: false
         master:
           quorum: 1
         slave:
