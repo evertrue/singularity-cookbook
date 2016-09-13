@@ -4,7 +4,7 @@ maintainer_email 'devops@evertrue.com'
 license          'All rights reserved'
 description      'Installs Singularity and its dependencies (mesos, zk, mysql)'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          '9.0.2'
+version          '10.0.0'
 supports         'ubuntu'
 
 depends 'apt'
