@@ -39,23 +39,3 @@ suites:
             rackid: us-east-1b
       zookeeper:
         service_style: upstart
-
-  - name: executor_package
-    run_list:
-      - recipe[singularity::executor]
-    attributes:
-      singularity:
-        executor:
-          s3_bucket: example
-          extra_args:
-            - '-Xmx192M'
-            - '-test'
-
-  - name: executor_source
-    run_list:
-      - recipe[singularity::executor]
-    attributes:
-      singularity:
-        install_type: source
-        executor:
-          s3_bucket: example

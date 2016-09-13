@@ -35,8 +35,6 @@ notifications:
 env:
   matrix:
   - SUITE: default
-  - SUITE: executor-package
-  - SUITE: executor-source
   global:
   - KITCHEN_YAML=.kitchen.cloud.yml
   - secure: WpQsZOaYNcSwz9ALHl5A+HOBe5/8Y+EPqrxd1CBxHFFyPDwU8M+VpnkoKIKlzwfRFpopOJDuVF2Pkujhdu/WA23RAUbDO4i+bE5qoWaOJi9jcDB8wXHne7CKMD0aD4yn+doIqZW5CPkeS6JOvTCiRwnTY/w3OXO0lgBTGqdyKT2pwDJ0I/kJM9srg5I1m1zR5oXHmi7gJqqBDygwwLPAP0+83vZyXNZ/1yV/AZG+wLB7TwKgPT1AW84O22wdYoz+h/o5OcRxexIG3ggABiFtFaTkD8kpQVhV1RGTDaMHPhTUWaimVa9FAc227DaakhDwOaYwPY0jFBPiqIwNMUCRSV2rYzAopSUvSjOEE39gjPpVPhaqFZjqNE0Pfo17s+oq7i9xpvh/UKvZ2h+TnQEUdb6PQWqYjdFemaRVczuxHHUv9AOF2hL2paHdACcCSCrc0kBG40/2fkMbojS3tfE9r1wSngvtIF7fb9vnKwIv04k9Px7JoehE+dFwfGp8svFbKbPneARg0wqD2f6UHNMHJqRnybfZVFId9L4tdaP6sck+Zja0WjtCBLz8q+Z+ahVzRMboAzh7Kouy0Gio5FSVJIQNeaB3F2YBBCQtm4FBk7zDXNA/PPivr8kLT5ItNiHVcDq7vRHuOSbPWKOl/W3NYVkWizo73IOJ4qxFIKLOz18=
