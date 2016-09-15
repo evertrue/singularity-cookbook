@@ -1,8 +1,8 @@
 default['singularity']['port'] = 7092
 default['singularity']['user'] = 'singularity'
 default['singularity']['group'] = 'singularity'
-default['singularity']['git_ref'] = 'Singularity-0.5.0'
-default['singularity']['version'] = '0.5.0'
+default['singularity']['git_ref'] = 'Singularity-0.7.1'
+default['singularity']['version'] = '0.7.1'
 default['singularity']['home'] = '/usr/local/singularity'
 default['singularity']['data_dir'] = '/var/lib/singularity'
 default['singularity']['log_dir'] = '/var/log/singularity'
@@ -22,9 +22,6 @@ default['singularity']['database']['db_name'] = 'singularity'
 default['singularity']['database']['username'] = 'singularity'
 default['singularity']['database']['password'] = '9thlevel'
 
-# Pinning to known-good compatibility b/t Mesos & Singularity
-# see HubSpot/Singularity#994 for Singularity catching up to Mesos 0.28.1
-default['et_mesos']['version'] = '0.27.2-2.0.15.ubuntu1404'
 default['et_mesos']['package']['with_zookeeper'] = true
 default['et_mesos']['master']['zk'] = 'zk://localhost:2181/mesos'
 default['et_mesos']['slave']['master'] = 'zk://localhost:2181/mesos'
