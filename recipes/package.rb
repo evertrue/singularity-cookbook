@@ -21,9 +21,9 @@ include_recipe 'maven'
 
 # Sometimes certificates are outdated and Maven refuses to connect to anything using SSL
 execute 'update-ca-certificates' do
-  command '/usr/sbin/update-ca-certificates'
+  command '/usr/sbin/update-ca-certificates -f'
   action :nothing
-  subscribes :run, 'ark[maven]'
+  subscribes :run, 'ark[maven]', :immediately
 end
 
 maven 'SingularityService' do
