@@ -1,31 +1,35 @@
 ---
 driver:
-  name: vagrant
+  name: ec2
+  require_chef_omnibus: 12.13.37
+  aws_ssh_key_id: <%= ENV['AWS_KEYPAIR_NAME'] %>
+  region: us-east-1
+  availability_zone: us-east-1b
+  security_group_ids: ['ci-testing']
+  instance_type: c3.large
+  interface: public
+  tags:
+    Env: public
+    Type: test
+    Operator: <%= ENV['USER'] %>
+
+transport:
+  name: sftp
+  ssh_key: <%= ENV['EC2_SSH_KEY_PATH'] %>
 
 provisioner:
   name: chef_zero
 
 platforms:
   - name: ubuntu-14.04
-    driver_config:
-      customize:
-        cpus: 4
-        memory: 1536
-      network:
-        - - private_network
-          - ip: '192.168.33.10'
-        - - forwarded_port
-          - guest: 7099
-            host: 8099
-        - - forwarded_port
-          - guest: 5050
-            host: 8050
 
 suites:
   - name: default
     run_list:
       - recipe[singularity::default]
-      - recipe[et_mesos::zookeeper]
+    driver:
+      tags:
+        Name: singularity-default-ubuntu-1404
     attributes:
       singularity:
         port: 7099
@@ -37,5 +41,32 @@ suites:
         slave:
           attributes:
             rackid: us-east-1b
-      zookeeper:
-        service_style: upstart
+
+  - name: executor_package
+    run_list:
+      - recipe[singularity::executor]
+    driver:
+      tags:
+        Name: singularity-executor-package-ubuntu-1404
+    attributes:
+      singularity:
+        executor:
+          s3_bucket: example
+          extra_args:
+            - '-Xmx192M'
+            - '-test'
+
+  - name: executor_source
+    run_list:
+      - recipe[singularity::executor]
+    driver:
+      tags:
+        Name: singularity-executor-source-ubuntu-1404
+    attributes:
+      singularity:
+        install_type: source
+        executor:
+          s3_bucket: example
+          extra_args:
+            - '-Xmx192M'
+            - '-test'
