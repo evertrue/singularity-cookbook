@@ -32,7 +32,6 @@ suites:
         Name: singularity-default-ubuntu-1404
     attributes:
       singularity:
-        port: 7099
         zk_hosts:
           - 'localhost:2181'
       et_mesos:

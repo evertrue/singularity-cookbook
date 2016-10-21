@@ -12,7 +12,7 @@ describe 'Services' do
     2181 => 'Zookeeper',
     3306 => 'MySQL',
     5050 => 'Mesos Master',
-    7099 => 'Singularity'
+    7092 => 'Singularity'
   }.each do |p, service|
     context service do
       describe port p do
