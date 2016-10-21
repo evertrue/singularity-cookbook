@@ -9,9 +9,7 @@ This is the Changelog for the singularity cookbook.
 
 ## v11.1.0 - (2016-10-21)
 
-## Changes
-
-* New cron job to re-activate agents that have been in "DECOMMISSIONING" state for over an hour
+## For additional changes see the [GitHub Release Notes](https://github.com/evertrue/singularity-cookbook/releases)
 
 ## v11.0.0 - (2016-09-13)
 
