@@ -1,7 +1,8 @@
 #!/usr/bin/env ruby
 
 # This script checks the local Singularity for Mesos Agents that have been in the
-# "decommissioning" state for more than 1 hour and, if found, reactivates them.
+# "decommissioning" or "decommissioned" state for more than 1 hour and, if found,
+# reactivates them.
 
 require 'socket'
 require 'unirest'
@@ -30,7 +31,7 @@ class SingularityCleanupAgents
 
   def overdue_decommissioning_agents
     agents.select do |agent|
-      agent['currentState']['state'] == 'DECOMMISSIONING' &&
+      %w(DECOMMISSIONING DECOMMISSIONED).include?(agent['currentState']['state']) &&
         (Time.now.to_i - agent['currentState']['timestamp'] / 1000) > DECOMMISSION_TIMEOUT
     end
   end
