@@ -41,3 +41,4 @@ end
 
 include_recipe 'singularity::configure'
 include_recipe 'singularity::logrotate'
+include_recipe 'singularity::tools'

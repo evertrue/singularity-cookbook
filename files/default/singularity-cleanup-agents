@@ -1,0 +1,58 @@
+#!/usr/bin/env ruby
+
+# This script checks the local Singularity for Mesos Agents that have been in the
+# "decommissioning" state for more than 1 hour and, if found, reactivates them.
+
+require 'socket'
+require 'unirest'
+
+class NotMasterException < StandardError; end
+
+class SingularityCleanupAgents
+  DECOMMISSION_TIMEOUT = 3600.freeze
+
+  attr_reader :api_url, :fqdn
+
+  def cleanup
+    check_if_master!
+
+    overdue_decommissioning_agents.each { |agent| activate_agent agent['id'] }
+  rescue NotMasterException
+    exit 0
+  end
+
+  def initialize
+    @api_url = 'http://localhost:7092/api'
+    @fqdn = Socket.gethostbyname(Socket.gethostname).first
+  end
+
+  private
+
+  def overdue_decommissioning_agents
+    agents.select do |agent|
+      agent['currentState']['state'] == 'DECOMMISSIONING' &&
+        (Time.now.to_i - agent['currentState']['timestamp'] / 1000) > DECOMMISSION_TIMEOUT
+    end
+  end
+
+  def agents
+    api_req('/slaves')
+  end
+
+  def activate_agent(id)
+    api_req "/slaves/slave/#{id}/activate", :post
+  end
+
+  def api_req(path, req_method = :get)
+    r = Unirest.send req_method, "#{api_url}#{path}"
+    raise "Bad response from Singularity API: #{r.inspect}" unless (200..299).cover? r.code
+    r
+  end
+
+  def check_if_master!
+    api_req('/state').body['hostStates'].find { |hs| hs['hostAddress'] == fqdn }['master'] ||
+      raise(NotMasterException)
+  end
+end
+
+SingularityCleanupAgents.new.cleanup
