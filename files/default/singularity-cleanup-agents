@@ -37,7 +37,7 @@ class SingularityCleanupAgents
   end
 
   def agents
-    api_req('/slaves')
+    api_req('/slaves').body
   end
 
   def activate_agent(id)
