@@ -45,7 +45,12 @@ class SingularityCleanupAgents
   end
 
   def api_req(path, req_method = :get)
-    r = Unirest.send req_method, "#{api_url}#{path}"
+    r = Unirest.send(
+      req_method,
+      "#{api_url}#{path}",
+      headers: { 'Content-Type' => 'application/json' },
+      parameters: {}.to_json
+    )
     raise "Bad response from Singularity API: #{r.inspect}" unless (200..299).cover? r.code
     r
   end
