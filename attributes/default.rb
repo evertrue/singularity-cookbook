@@ -1,5 +1,5 @@
-default['singularity']['git_ref'] = 'Singularity-0.11.0'
-default['singularity']['version'] = '0.11.0'
+default['singularity']['git_ref'] = 'Singularity-0.13.0'
+default['singularity']['version'] = '0.13.0'
 
 default['singularity']['port'] = 7092
 default['singularity']['user'] = 'singularity'
@@ -29,7 +29,7 @@ default['et_mesos']['slave']['master'] = 'zk://localhost:2181/mesos'
 
 default['mysql']['port'] = '3306'
 default['mysql']['bind_address'] = '0.0.0.0'
-default['mysql']['version'] = '5.5'
+default['mysql']['version'] = '5.6'
 
 default['baragon']['service_yaml']['server']['connector']['port'] = 8088
 
