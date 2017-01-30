@@ -56,7 +56,9 @@ class SingularityCleanupAgents
   end
 
   def check_if_master!
-    api_req('/state').body['hostStates'].find { |hs| hs['hostAddress'] == fqdn }['master'] ||
+    response = api_req('/state')
+    fail "No /state response from API: #{response.inspect}" unless response.body
+    response.body['hostStates'].find { |hs| hs['hostAddress'] == fqdn }['master'] ||
       raise(NotMasterException)
   end
 end
