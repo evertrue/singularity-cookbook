@@ -16,6 +16,10 @@ default['singularity']['singularity_yaml'] = {
       ]
     }
   },
+  'historyPruning' => {
+    'enabled' => true,
+    'checkTaskHistoryEveryHours' => 24,
+  },
   'database' => {
     'driverClass' => 'com.mysql.jdbc.Driver',
     'user' => node['singularity']['database']['username'],
@@ -53,3 +57,11 @@ default['singularity']['singularity_yaml'] = {
     'numCpus' => 0.1
   }
 }
+
+if node.chef_environment == 'prod'
+  default['singularity']['singularity_yaml']['historyPruning']['deleteTaskHistoryAfterDays'] = 90
+  default['singularity']['singularity_yaml']['historyPruning']['deleteTaskHistoryAfterTasksPerRequest'] = 5000
+else
+  default['singularity']['singularity_yaml']['historyPruning']['deleteTaskHistoryAfterDays'] = 30
+  default['singularity']['singularity_yaml']['historyPruning']['deleteTaskHistoryAfterTasksPerRequest'] = 500
+end
