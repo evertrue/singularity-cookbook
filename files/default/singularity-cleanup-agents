@@ -60,6 +60,8 @@ class SingularityCleanupAgents
     fail "No /state response from API: #{response.inspect}" unless response.body
     response.body['hostStates'].find { |hs| hs['hostAddress'] == fqdn }['master'] ||
       raise(NotMasterException)
+  rescue Exception => e
+    raise $!, "#{$!}\nResponse:\n#{response.inspect}", $!.backtrace
   end
 end
 
