@@ -1,5 +1,5 @@
 # singularity-cookbook
-
+   
 This cookbook provides the dependencies for the Singularity Mesos framework:
 
 - Mesos: [et_mesos](https://supermarket.chef.io/cookbooks/et_mesos) cookbook
@@ -10,7 +10,7 @@ You should have a separate Zookeeper cluster to point to or use the [zookeeper](
 cookbook
 
 # Attributes
-
+   
 You can also find comments in [attributes/default.rb](https://github.com/evertrue/singularity-cookbook/blob/master/attributes/default.rb)
 
 ## General Attributes
