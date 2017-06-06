@@ -9,7 +9,7 @@ supports         'ubuntu'
 
 depends 'apt'
 depends 'build-essential'
-depends 'mysql', '~> 6.0'
+depends 'mysql', '~> 8.0'
 depends 'git'
 depends 'mysql2_chef_gem'
 depends 'database'
