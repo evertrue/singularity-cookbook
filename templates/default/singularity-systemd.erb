@@ -1,0 +1,20 @@
+[Unit]
+Description=Singularity Service
+After=network.target
+After=systemd-user-sessions.service
+After=network-online.target
+ 
+[Service]
+Environment=PATH=<%= node['singularity']['home'] %>/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/lib64/qt-3.3/bin:/usr/local/bin:/bin:/usr/bin
+Environment=MESOS_HOME=/usr/local
+Environment=MESOS_NATIVE_LIBRARY=/usr/local/lib/libmesos.so
+Environment=PORT=<%= node['singularity']['port'] %>
+ExecStart=<%= node['java']['java_home'] %>/bin/java -Xmx512m -Djava.net.preferIPv4Stack=true -jar <%= node['singularity']['home'] %>/bin/SingularityService-<%= node['singularity']['version'] %>-shaded.jar server <%= node['singularity']['conf_dir'] %>/singularity.yaml
+TimeoutSec=30
+Restart=on-failure
+RestartSec=30
+StartLimitInterval=350
+StartLimitBurst=10
+ 
+[Install]
+WantedBy=multi-user.target

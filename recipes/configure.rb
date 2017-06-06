@@ -40,13 +40,20 @@ remote_file "#{node['singularity']['home']}/mysql/migrations.sql" do
   notifies :run, 'execute[migrate_singularity_db]'
 end
 
-template '/etc/init/singularity.conf' do
-  source   'singularity-init.erb'
-  notifies :restart, 'service[singularity]'
+if node['platform_version'].to_i < 16
+  template '/etc/init/singularity.conf' do
+    source   'singularity-init.erb'
+    notifies :restart, 'service[singularity]'
+  end
+else
+  template '/etc/systemd/system/singularity.service' do
+    source 'singularity-systemd.erb'
+    notifies :restart, 'service[singularity]'
+  end
 end
 
 service 'singularity' do
-  provider   Chef::Provider::Service::Upstart
+  provider   Chef::Provider::Service::Upstart if node['platform_version'].to_i < 16
   supports   status: true, restart: true
   action     [:enable, :start]
 end
