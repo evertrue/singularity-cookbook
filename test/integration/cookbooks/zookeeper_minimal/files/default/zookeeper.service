@@ -1,0 +1,13 @@
+[Unit]
+Description=Zookeeper Service
+After=network.target
+After=systemd-user-sessions.service
+After=network-online.target
+
+[Service]
+Type=simple
+ExecStart=/usr/share/zookeeper/bin/zkServer.sh start-foreground
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
