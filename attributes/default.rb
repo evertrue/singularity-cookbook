@@ -1,5 +1,5 @@
-default['singularity']['git_ref'] = 'Singularity-0.13.0'
-default['singularity']['version'] = '0.13.0'
+default['singularity']['git_ref'] = 'Singularity-0.15.1'
+default['singularity']['version'] = '0.15.1'
 
 default['singularity']['port'] = 7092
 default['singularity']['user'] = 'singularity'
