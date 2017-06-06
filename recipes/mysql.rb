@@ -38,12 +38,13 @@ end
 mysql_service 'default' do
   port node['mysql']['port']
   bind_address node['mysql']['bind_address']
-  version node['mysql']['version']
+  version '5.6' if node['platform_version'].to_i == 14
   initial_root_password server_root_password
   action [:create, :start]
 end
 
 mysql_client 'default' do
+  package_name %w(mysql-client-5.6 libmysqlclient-dev) if node['platform_version'].to_i == 14
   action :create
 end
 

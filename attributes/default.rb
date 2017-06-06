@@ -29,7 +29,6 @@ default['et_mesos']['slave']['master'] = 'zk://localhost:2181/mesos'
 
 default['mysql']['port'] = '3306'
 default['mysql']['bind_address'] = '0.0.0.0'
-default['mysql']['version'] = '5.6'
 
 default['baragon']['service_yaml']['server']['connector']['port'] = 8088
 
