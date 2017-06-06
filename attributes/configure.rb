@@ -30,7 +30,7 @@ default['singularity']['singularity_yaml'] = {
       "#{node['singularity']['database']['db_name']}"
   },
   'mesos' => {
-    'master' => 'zk://localhost:2181',
+    'master' => 'zk://localhost:2181/mesos',
     'defaultCpus' => 1,
     'defaultMemory' => 128,
     'frameworkName' => 'Singularity',
