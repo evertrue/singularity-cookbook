@@ -24,8 +24,7 @@ default['singularity']['database']['username'] = 'singularity'
 default['singularity']['database']['password'] = '9thlevel'
 
 default['et_mesos']['package']['with_zookeeper'] = true
-default['et_mesos']['master']['zk'] = 'zk://localhost:2181/mesos'
-default['et_mesos']['slave']['master'] = 'zk://localhost:2181/mesos'
+default['et_mesos']['zk'] = 'zk://localhost:2181/mesos'
 
 default['mysql']['port'] = '3306'
 default['mysql']['bind_address'] = '0.0.0.0'

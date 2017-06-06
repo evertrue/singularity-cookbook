@@ -37,6 +37,7 @@ suites:
         zk_hosts:
           - 'localhost:2181'
       et_mesos:
+        zk: 'zk://localhost:2181/mesos'
         package:
           with_zookeeper: false
         master:
