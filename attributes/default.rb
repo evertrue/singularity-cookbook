@@ -37,3 +37,8 @@ default['java']['ark_timeout'] = 10
 default['java']['ark_retries'] = 3
 
 default['singularity']['install_mysql'] = true
+
+default['singularity']['java_opts'] = %w(
+  -DXmx512m
+  -Djava.net.preferIPv4Stack=true
+)

@@ -9,7 +9,7 @@ Environment=PATH=<%= node['singularity']['home'] %>/bin:/usr/local/sbin:/usr/sbi
 Environment=MESOS_HOME=/usr/local
 Environment=MESOS_NATIVE_LIBRARY=/usr/local/lib/libmesos.so
 Environment=PORT=<%= node['singularity']['port'] %>
-ExecStart=<%= node['java']['java_home'] %>/bin/java -Xmx512m -Djava.net.preferIPv4Stack=true -jar <%= node['singularity']['home'] %>/bin/SingularityService-<%= node['singularity']['version'] %>-shaded.jar server <%= node['singularity']['conf_dir'] %>/singularity.yaml
+ExecStart=<%= node['java']['java_home'] %>/bin/java <%= node['singularity']['java_opts'].join ' ' %> -jar <%= node['singularity']['home'] %>/bin/SingularityService-<%= node['singularity']['version'] %>-shaded.jar server <%= node['singularity']['conf_dir'] %>/singularity.yaml
 TimeoutSec=30
 Restart=on-failure
 RestartSec=30
