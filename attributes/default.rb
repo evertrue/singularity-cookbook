@@ -42,4 +42,5 @@ default['singularity']['java_opts'] = %w(
   -DXms1g
   -DXmx1g
   -Djava.net.preferIPv4Stack=true
+  -Djute.maxbuffer=5000000
 )
