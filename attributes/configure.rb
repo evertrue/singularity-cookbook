@@ -55,7 +55,8 @@ default['singularity']['singularity_yaml'] = {
   'customExecutor' => {
     'memoryMb' => 128,
     'numCpus' => 0.1
-  }
+  },
+  'zookeeperAsyncTimeout' => 20_000
 }
 
 if node.chef_environment == 'prod'
