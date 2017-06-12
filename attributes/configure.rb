@@ -56,6 +56,16 @@ default['singularity']['singularity_yaml'] = {
     'memoryMb' => 128,
     'numCpus' => 0.1
   },
+  's3' => {
+    's3UploaderAdditionalFiles' => [
+      {
+        'filename' => 'stdout'
+      },
+      {
+        'filename' => 'stderr'
+      }
+    ]
+  },
   'zookeeperAsyncTimeout' => 20_000
 }
 
