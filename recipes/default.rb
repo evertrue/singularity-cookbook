@@ -38,7 +38,7 @@ case node['singularity']['install_type']
 when 'package', 'source'
   include_recipe "singularity::#{node['singularity']['install_type']}"
 else
-  raise "Invalid install type: #{node['singularity']['install_type']}"
+  fail "Invalid install type: #{node['singularity']['install_type']}"
 end
 
 include_recipe 'singularity::configure'
