@@ -27,10 +27,12 @@ include_recipe 'singularity::mysql' if node['singularity']['install_mysql']
  node['singularity']['home'],
  "#{node['singularity']['home']}/mysql",
  "#{node['singularity']['home']}/bin"].each do |cur_dir|
-   directory cur_dir do
-     recursive true
-   end
- end
+  directory cur_dir do
+    user 'singularity'
+    group 'singularity'
+    recursive true
+  end
+end
 
 case node['singularity']['install_type']
 when 'package', 'source'
