@@ -6,6 +6,9 @@ env MESOS_HOME=/usr/local
 env MESOS_NATIVE_LIBRARY=/usr/local/lib/libmesos.so
 env PORT=<%= node['singularity']['port'] %>
 
+setuid singularity
+setgid singularity
+
 start on stopped rc RUNLEVEL=[2345]
 
 respawn

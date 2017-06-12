@@ -37,4 +37,8 @@ describe 'Services' do
   describe file '/usr/local/lib/libmesos.so' do
     it { should be_file }
   end
+
+  describe command 'pgrep -f -u singularity SingularityService' do
+    its(:exit_status) { is_expected.to be 0 }
+  end
 end

@@ -5,6 +5,8 @@ After=systemd-user-sessions.service
 After=network-online.target
  
 [Service]
+User=singularity
+Group=singularity
 Environment=PATH=<%= node['singularity']['home'] %>/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/lib64/qt-3.3/bin:/usr/local/bin:/bin:/usr/bin
 Environment=MESOS_HOME=/usr/local
 Environment=MESOS_NATIVE_LIBRARY=/usr/local/lib/libmesos.so
