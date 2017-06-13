@@ -57,6 +57,8 @@ default['singularity']['singularity_yaml'] = {
     'numCpus' => 0.1
   },
   's3' => {
+    's3Bucket' => 'et-logstash',
+    's3KeyFormat' => 'singularitys3uploader/%requestId/%Y/%m/%taskId_%index-%s-%filename',
     's3UploaderAdditionalFiles' => [
       {
         'filename' => 'stdout'
