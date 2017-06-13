@@ -54,7 +54,8 @@ default['singularity']['singularity_yaml'] = {
     '/baragon/v2/request',
   'customExecutor' => {
     'memoryMb' => 128,
-    'numCpus' => 0.1
+    'numCpus' => 0.1,
+    'serviceLog' => '../stdout'
   },
   's3' => {
     's3Bucket' => 'et-logstash',
