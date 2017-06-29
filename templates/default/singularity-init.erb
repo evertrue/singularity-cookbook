@@ -6,8 +6,11 @@ env MESOS_HOME=/usr/local
 env MESOS_NATIVE_LIBRARY=/usr/local/lib/libmesos.so
 env PORT=<%= node['singularity']['port'] %>
 
-setuid singularity
-setgid singularity
+# Running singularity as a non-root user turns out to be more consequential than
+# we realized since Mesos tries to start all tasks on all agents using this same
+# user. Leaving this commented out until all tasks have a specified user.
+#setuid singularity
+#setgid singularity
 
 start on stopped rc RUNLEVEL=[2345]
 
